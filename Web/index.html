@@ -20,29 +20,29 @@
 </head>
 <body>
     <div class="container">
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="text-right">
-                    <select id="language">
-                        <option value="javascript">javascript</option>
-                        <option value="python">python</option>
-                        <option value="application/x-httpd-php">php</option>
-                    </select>
-                    <button type="submit" class="btn btn-sm btn-primary">Execute</button>
+        <form action="http://localhost/MITProject/" method="post" id="my_form">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="text-right">
+                        <select id="language" name="language">
+                            <option value="application/x-httpd-php">php</option>
+                            <option value="python">python</option>
+                            <option value="javascript">javascript</option>
+                        </select>
+                        <button type="submit" class="btn btn-sm btn-primary" id="exceute">Execute</button>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <textarea id="myEditor">
+            <div class="row">
+                <div class="col-sm-6">
+                    <textarea name="myEditor" id="myEditor">
 function myScript(){
     return 100;
-}
-                </textarea>
+}</textarea>
+                </div>
+                <div class="col-sm-6" id="result"></div>
             </div>
-            <div class="col-sm-6" id="result">
-            </div>
-        </div>
+        </form>
     </div>
     <script src="assets/vendor/jquery-3.4.1.min.js"></script>
     <script src="assets/js/script.js"></script>
