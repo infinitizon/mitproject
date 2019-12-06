@@ -25,9 +25,8 @@
                 <div class="col-sm-6">
                     <div class="text-right">
                         <select id="language" name="language">
-                            <option value="application/x-httpd-php">php</option>
-                            <option value="python">python</option>
-                            <option value="javascript">javascript</option>
+                            <option data-endpoint="http://localhost/MITProject/" value="application/x-httpd-php">php</option>
+                            <option data-endpoint="http://127.0.0.1:5000/" value="python">python</option>
                         </select>
                         <button type="submit" class="btn btn-sm btn-primary" id="exceute">Execute</button>
                     </div>
@@ -36,9 +35,9 @@
             <div class="row">
                 <div class="col-sm-6">
                     <textarea name="myEditor" id="myEditor">
-function myScript(){
-    return 100;
-}</textarea>
+<?php
+echo "Hello world";
+?></textarea>
                 </div>
                 <div class="col-sm-6" id="result"></div>
             </div>
