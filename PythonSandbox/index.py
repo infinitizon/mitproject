@@ -1,4 +1,4 @@
-import json
+# import json
 from flask import Flask,request,jsonify
 from sandbox import Sandbox
 app = Flask(__name__)
@@ -24,6 +24,7 @@ def sandbox():
     s = Sandbox()
     code = request.form['myEditor']
     return s.execute(code)
+    # return ""
     
 if __name__ == "__main__":
     app.run()
