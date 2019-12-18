@@ -1,9 +1,10 @@
 $(function(){
+    
     var myTextArea = document.getElementById("myEditor");
     var myCodeMirror = CodeMirror.fromTextArea(myTextArea, {
         lineNumbers: true,
         matchBrackets: true,
-        mode: $('#language option:selected').text(),
+        mode: $('#language option:selected').val(),
         indentUnit: 3,
         indentWithTabs: true
     });

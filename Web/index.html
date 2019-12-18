@@ -13,6 +13,8 @@
     <script src="assets/vendor/codemirror-5.49.2/mode/javascript/javascript.js"></script>
     <script src="assets/vendor/codemirror-5.49.2/mode/python/python.js"></script>
     <script src="assets/vendor/codemirror-5.49.2/mode/htmlmixed/htmlmixed.js"></script>
+    <script src="assets/vendor/codemirror-5.49.2/mode/htmlembedded/htmlembedded.js"></script>
+    <script src="assets/vendor/codemirror-5.49.2/addon/mode/multiplex.js"></script>
     <script src="assets/vendor/codemirror-5.49.2/mode/xml/xml.js"></script>
     <script src="assets/vendor/codemirror-5.49.2/mode/css/css.js"></script>
     <script src="assets/vendor/codemirror-5.49.2/mode/clike/clike.js"></script>
@@ -25,6 +27,7 @@
                 <div class="col-sm-6">
                     <div class="text-right">
                         <select id="language" name="language">
+                            <option data-endpoint="local" value="application/x-ejs">html</option>
                             <option data-endpoint="http://localhost/MITProject/" value="application/x-httpd-php">php</option>
                             <option data-endpoint="http://127.0.0.1:5000/" value="python">python</option>
                         </select>
@@ -35,9 +38,18 @@
             <div class="row">
                 <div class="col-sm-6">
                     <textarea name="myEditor" id="myEditor">
-<?php
-echo "Hello world";
-?></textarea>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+
+<h1>This is a Heading</h1>
+<p>This is a paragraph.</p>
+
+</body>
+</html></textarea>
                 </div>
                 <div class="col-sm-6" id="result"></div>
             </div>
