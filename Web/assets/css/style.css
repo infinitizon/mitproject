@@ -1,1 +1,4 @@
-#result,.CodeMirror {border: 1px solid #cccccc;}
+#result,.CodeMirror {border: 1px solid #cccccc; min-height: 300px;}
+textarea { resize:both; } /* none|horizontal|vertical|both */
+textarea.vert { resize:vertical; }
+textarea.noResize { resize:none; }

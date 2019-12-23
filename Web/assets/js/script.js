@@ -5,7 +5,7 @@ $(function(){
         lineNumbers: true,
         matchBrackets: true,
         mode: $('#language option:selected').val(),
-        indentUnit: 3,
+        indentUnit: 2,
         indentWithTabs: true
     });
     $('#language').on('change', function() {
@@ -47,16 +47,20 @@ $(function(){
         //     clientId: "8a175e04ec3826d689006b13250c4f89",
         //     clientSecret:"434341b7301743c172062efa0254d8e8cbcdb0403a71bdce299df88c6137cb74",
         // }
-
-        $.ajax({
-            url : post_url,
-            type: request_method,
-            data : form_data,
-            // data : JSON.stringify(form_data),
-            // contentType:"application/json;",
-            // dataType:"json",
-        }).done(function(response){ //
-            $("#result").html(response);
-        });
+        if($lang ==="html"){
+            $("#result").html($("#myEditor").val());
+        } else {
+            $.ajax({
+                url : post_url,
+                type: request_method,
+                data : form_data,
+                // data : JSON.stringify(form_data),
+                // contentType:"application/json;",
+                // dataType:"json",
+            }).done(function(response){ //
+                $("#result").html(response);
+            });
+        }
     });
 });
+autosize($('textarea'));
