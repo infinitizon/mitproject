@@ -39,9 +39,6 @@ $(function(){
                 url : post_url,
                 type: request_method,
                 data : form_data,
-                // data : JSON.stringify(form_data),
-                // contentType:"application/json;",
-                // dataType:"json",
             }).done(function(response){ //
                 $("#result").html(response);
             });
