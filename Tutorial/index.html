@@ -28,9 +28,9 @@
             </div>
             <div class="col-sm-9">
                 <div class="row">
-                    <div class="col-sm-5">
+                    <div class="col-sm-7">
                         <h1>HTML</h1>
-                        <h5>The language that helps us to build web pages</h5>
+                        <h5>The major language for building web pages</h5>
                         <div class="fakeimg"><a href="#" class="btn btn-light">LEARN HTML</a></div>
                     </div>
                     <div class="col-sm-5">
@@ -43,6 +43,7 @@
 &lt;/body&gt;
 &lt;/html&gt;
 </pre>
+<a class="btn btn-primary" href="javascript:;" id="tryOutHTML" data-toggle="modal" data-target="#exampleModalCenter">Try it out</a>
                     </div>
                 </div>
               
@@ -98,9 +99,27 @@ p {
                 </div>
             </div>
           </div>
+          <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <iframe id="frame" src="" width="100%" height="500" frameBorder="0"></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
     <script src="../assets/vendor/prettify/src/prettify.js"></script>
     <script src="../assets/vendor/prettify/src/lang-css.js"></script>
     <script>prettyPrint();</script>
+    <script src="../assets/vendor/jquery-3.4.1.min.js"></script>
+    <script src="../assets/vendor/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="assets/js/script.js"></script>
 </body>
 </html>

@@ -1,5 +1,23 @@
+function getParamValue(paramName)
+{
+    var url = window.location.search.substring(1); //get rid of "?" in querystring
+    var qArray = url.split('&'); //get key-value pairs
+    for (var i = 0; i < qArray.length; i++) 
+    {
+        var pArr = qArray[i].split('='); //split key and value
+        if (pArr[0] == paramName) 
+            return pArr[1]; //return value
+    }
+}
 $(function(){
-    
+    var lang = getParamValue('lang');
+    langFromIFrame = $('#language option:contains('+lang+')').val();
+    $('#language option[value="' + langFromIFrame + '"]').attr('selected',true);
+    $("#myEditor").val(decodeURI(getParamValue('content')))
+    if(lang !='' && lang !== 'undefined'){
+        $('.container').removeClass( "container" )
+    }
+
     var myTextArea = document.getElementById("myEditor");
     var myCodeMirror = CodeMirror.fromTextArea(myTextArea, {
         lineNumbers: true,
@@ -13,9 +31,6 @@ $(function(){
     });
     $("#my_form").submit(function(event){
         event.preventDefault();
-        // using https://docs.jdoodle.com/compiler-api/
-        // var post_url = "https://api.jdoodle.com/v1/execute";
-
         // Using a local server
         $lang = $('#language option:selected').text();
         $endpoint = config[$lang]['endpoint'];
@@ -25,13 +40,6 @@ $(function(){
         var form_data = $(this).serialize(); //Encode form elements for submission
         // console.log(form_data); return;
 
-        // var form_data = {
-        //     script: $("#myEditor").val(),
-        //     language: $lang,
-        //     versionIndex: "0",
-        //     clientId: "8a175e04ec3826d689006b13250c4f89",
-        //     clientSecret:"434341b7301743c172062efa0254d8e8cbcdb0403a71bdce299df88c6137cb74",
-        // }
         if($lang ==="html"){
             $("#result").html($("#myEditor").val());
         } else {
