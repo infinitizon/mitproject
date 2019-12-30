@@ -7,7 +7,6 @@
     <title>Document</title>
 
     <link rel="stylesheet" href="../assets/vendor/bootstrap/4.3.1/css/bootstrap.min.css">
-    <!-- <link href="../assets/vendor/rainbow-master/themes/css/github.css" rel="stylesheet" type="text/css"> -->
     <link href="../assets/vendor/prettify/src/prettify.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -16,7 +15,7 @@
             <div class="col-sm-3">
               <ul class="nav nav-pills flex-column">
                 <li class="nav-item">
-                  <a class="nav-link active" href="#">HTML & CSS</a>
+                  <a class="nav-link" href="#">HTML & CSS</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">PHP</a>
@@ -32,68 +31,76 @@
                     <div class="col-sm-5">
                         <h1>HTML</h1>
                         <h5>The language that helps us to build web pages</h5>
-                        <div class="fakeimg"><a href="btn btn-default">LEARN HTML</a></div>
+                        <div class="fakeimg"><a href="#" class="btn btn-light">LEARN HTML</a></div>
                     </div>
                     <div class="col-sm-5">
-                        <!-- <pre>
-                            <code data-language="html">&lt;!-- inline styles! --&gt;&lt;!DOCTYPE html&gt;
-                            &lt;!DOCTYPE html --&gt; 
-                            &lt;html&gt;
-                            &lt;title&gt;HTML Tutorial&lt;/title&gt;
-                            &lt;body&gt;
-                            &lt;h1&gt;Hello student&lt;/h1&gt;
-                            &lt;/body&gt;
-                            &lt;/html&gt;
-                            </code>
-                            </pre> -->
-<pre class="prettyprint">
-    &lt;!DOCTYPE html&gt;
-    &lt;html&gt;
-    &lt;title&gt;HTML Tutorial&lt;/title&gt;
-    &lt;body&gt;
-    &lt;h1&gt;Hello student&lt;/h1&gt;
-    &lt;/body&gt;
-    &lt;/html&gt;
-    </code>
-</pre class="prettyprint">
+<pre class="prettyprint lang-html linenums">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;title&gt;HTML Tutorial&lt;/title&gt;
+&lt;body&gt;
+  &lt;h1&gt;Hello student&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
                     </div>
                 </div>
               
+                <div class="row">&nbsp;</div>
                 <div class="row">
-                    <div class="col-sm-8">
-                        <h1>CSS</h1>
-                        <h5>This helps us to make our sites beautiful</h5>
-                        <div class="fakeimg"><a href="btn btn-default">LEARN CSS</a></div>
-                    </div>
-                    <div class="col-sm-4">
-<pre>
-<code data-language="css">
+                  <div class="col-sm-6">
+<pre class="prettyprint lang-css linenums">
 body {
-background-color: lightblue;
+  background-color: lightblue;
 }
 
 h1 {
-color: white;
-text-align: center;
+  color: white;
+  text-align: center;
 }
 
 p {
-font-family: verdana;
-font-size: 20px;
-}</code>
+  font-family: verdana;
+  font-size: 20px;
+}
 </pre>
-                          </blockquote>
+                  </div>
+                    <div class="col-sm-6">
+                        <h1>CSS</h1>
+                        <h5>This helps us to make our sites beautiful</h5>
+                        <div class="fakeimg"><a href="#" class="btn btn-light">LEARN CSS</a></div>
                     </div>
+                </div>
+                <div class="row">&nbsp;</div>
+                <div class="row bg-secondary">
+                  <div class="col-sm-12">
+                    <div class="row m-5">
+                      <div class="col-sm-6">
+                        <div class="card text-center bg-light">
+                          <div class="card-body">
+                            <h2>PHP</h2>
+                            <h6 class="card-subtitle mb-2 text-muted">A server side programming language</h6>
+                            <a href="#" class="btn btn-secondary mt-5">LEARN PHP</a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="card text-center bg-light">
+                          <div class="card-body">
+                            <h2>Python</h2>
+                            <h6 class="card-subtitle mb-2 text-muted">A programming language</h6>
+                            <a href="#" class="btn btn-secondary mt-5">LEARN PYTHON</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
             </div>
           </div>
     </div>
-    <!-- <script src="../assets/vendor/rainbow-master/dist/rainbow.min.js"></script>
-    <script src="../assets/vendor/rainbow-master/src/language/generic.js"></script>
-    <script src="../assets/vendor/rainbow-master/src/language/html.js"></script>
-    <script src="../assets/vendor/rainbow-master/src/language/css.js"></script>
-    <script src="../assets/vendor/rainbow-master/src/language/javascript.js"></script> -->
     <script src="../assets/vendor/prettify/src/prettify.js"></script>
+    <script src="../assets/vendor/prettify/src/lang-css.js"></script>
     <script>prettyPrint();</script>
 </body>
 </html>
