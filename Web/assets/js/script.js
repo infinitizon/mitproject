@@ -11,11 +11,14 @@ function getParamValue(paramName)
 }
 $(function(){
     var lang = getParamValue('lang');
-    langFromIFrame = $('#language option:contains('+lang+')').val();
-    $('#language option[value="' + langFromIFrame + '"]').attr('selected',true);
-    $("#myEditor").val(decodeURI(getParamValue('content')))
-    if(lang !='' && lang !== 'undefined'){
+    var langFromIFrame = undefined
+    if(lang !='' && typeof lang !== 'undefined'){
+        langFromIFrame = $('#language option:contains('+lang+')').val();
+        $('#language option[value="' + langFromIFrame + '"]').attr('selected',true);
+        $("#myEditor").val(decodeURI(getParamValue('content')))
         $('.container').removeClass( "container" )
+        $('#language').css('display','none')
+        //     $("#my_form").submit()
     }
 
     var myTextArea = document.getElementById("myEditor");
@@ -29,6 +32,7 @@ $(function(){
     $('#language').on('change', function() {
         myCodeMirror.setOption("mode", this.value );
     });
+
     $("#my_form").submit(function(event){
         event.preventDefault();
         // Using a local server
@@ -52,5 +56,7 @@ $(function(){
             });
         }
     });
+    if(lang !='' && typeof lang !== 'undefined' && typeof langFromIFrame !== 'undefined'){
+        $("#my_form").submit()
+    }
 });
-autosize($('textarea'));

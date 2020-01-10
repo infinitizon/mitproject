@@ -1,29 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+<?php
+require_once('../assets/config.php');
 
-    <link rel="stylesheet" href="../assets/vendor/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link href="../assets/vendor/prettify/src/prettify.css" rel="stylesheet" type="text/css">
-</head>
+$styles = [
+  "../assets/vendor/bootstrap/4.3.1/css/bootstrap.min.css",
+  WEB_ROOT."assets/vendor/codemirror-5.49.2/lib/codemirror.css",
+  "../assets/vendor/prettify/src/prettify.css",
+];
+$scripts = [
+  "../assets/vendor/prettify/src/prettify.js",
+  "../assets/vendor/prettify/src/lang-css.js",
+  "../assets/vendor/jquery-3.4.1.min.js",
+  "../assets/vendor/bootstrap/4.3.1/js/bootstrap.min.js",
+  WEB_ROOT."/assets/js/config.js",
+  "assets/js/script.js",
+];
+require_once('assets/header.php');
+?>
+
 <body>
     <div class="container">
         <div class="row">
             <div class="col-sm-3">
-              <ul class="nav nav-pills flex-column">
-                <li class="nav-item">
-                  <a class="nav-link" href="#">HTML & CSS</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">PHP</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">PYTHON</a>
-                </li>
-              </ul>
+              <?php
+require_once('assets/menu.php');
+              ?>
               <hr class="d-sm-none">
             </div>
             <div class="col-sm-9">
@@ -99,27 +99,11 @@ p {
                 </div>
             </div>
           </div>
-          <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <iframe id="frame" src="" width="100%" height="500" frameBorder="0"></iframe>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
     </div>
-    <script src="../assets/vendor/prettify/src/prettify.js"></script>
-    <script src="../assets/vendor/prettify/src/lang-css.js"></script>
-    <script>prettyPrint();</script>
-    <script src="../assets/vendor/jquery-3.4.1.min.js"></script>
-    <script src="../assets/vendor/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="assets/js/script.js"></script>
+
+    <?php
+require_once('assets/footer.php');
+    ?>
 </body>
 </html>
