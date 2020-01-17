@@ -5,6 +5,7 @@ $styles = [
   "../assets/vendor/bootstrap/4.3.1/css/bootstrap.min.css",
   WEB_ROOT."assets/vendor/codemirror-5.49.2/lib/codemirror.css",
   "../assets/vendor/prettify/src/prettify.css",
+  "assets/css/style.css",
 ];
 $scripts = [
   "../assets/vendor/prettify/src/prettify.js",
@@ -33,7 +34,7 @@ require_once('assets/menu.php');
                         <h5>The major language for building web pages</h5>
                         <div class="fakeimg"><a href="#" class="btn btn-light">LEARN HTML</a></div>
                     </div>
-                    <div class="col-sm-5">
+                    <div class="col-sm-5 code-display">
 <pre class="prettyprint lang-html linenums">
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -49,7 +50,7 @@ require_once('assets/menu.php');
               
                 <div class="row">&nbsp;</div>
                 <div class="row">
-                  <div class="col-sm-6">
+                  <div class="col-sm-6 code-display">
 <pre class="prettyprint lang-css linenums">
 body {
   background-color: lightblue;
