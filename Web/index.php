@@ -10,6 +10,7 @@ require_once('../assets/config.php');
     <title>Document</title>
 
     <link rel="stylesheet" href="<?php echo WEB_ROOT; ?>assets/vendor/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo WEB_ROOT; ?>assets/vendor/fontawesome/5.12.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="<?php echo WEB_ROOT; ?>assets/vendor/codemirror-5.49.2/lib/codemirror.js"></script>
     <link rel="stylesheet" href="<?php echo WEB_ROOT; ?>assets/vendor/codemirror-5.49.2/lib/codemirror.css">
@@ -27,20 +28,19 @@ require_once('../assets/config.php');
     <div class="container">
         <form action="http://localhost/MITProject/" method="post" id="my_form">
             <div class="row">
-                <div class="col-sm-6">
-                    <div class="text-right">
-                        <select id="language" name="language">
+                <div class="col-md-5">
+                    <div class="text-right form-group">
+                        <select class="form-control" id="language" name="language">
                             <option value="application/x-ejs">html</option>
                             <option value="application/x-httpd-php">php</option>
                             <option value="python">python</option>
                         </select>
-                        <button type="submit" class="btn btn-sm btn-primary" id="exceute">Execute</button>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <textarea name="myEditor" id="myEditor" style="margin-left:50px;"><!DOCTYPE html>
+            <div class="row d-flex h-100">
+                <div class="col-md-6">
+                    <textarea name="myEditor" id="myEditor" ><!DOCTYPE html>
 <html>
 <head>
   <title>Page Title</title>
@@ -50,7 +50,41 @@ require_once('../assets/config.php');
   <p>This is a paragraph.</p>
 </body>
 </html></textarea></div>
-                <div class="col-sm-6" id="result"></div>
+<div class="col-md-1 text-center justify-content-center align-self-center">
+<span class="glyphicon glyphicon-print"></span>
+    <button type="submit" class="btn btn-sm btn-primary d-none d-md-block" id="exceute">
+        <i class="far fa-paper-plane"></i> Run
+    </button>
+    <button type="submit" class="btn btn-sm btn-primary d-md-none d-lg-none" id="exceute">
+        <i class="far fa-paper-plane"></i> Execute
+    </button>
+</div>
+
+<div class="col-md-5">
+    <div class="result-container">
+        <div class="result-row">
+            <div class="column left">
+            <span class="dot" style="background:#ED594A;"></span>
+            <span class="dot" style="background:#FDD800;"></span>
+            <span class="dot" style="background:#5AC05A;"></span>
+            </div>
+            <div class="column middle">
+                <input type="text" value="localhost">
+            </div>
+            <div class="column right">
+            <div style="float:right">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            </div>
+        </div>
+
+        <div id="result">
+            <p>Your result shows up here.</p>
+        </div>
+    </div>
+</div>
             </div>
         </form>
     </div>
