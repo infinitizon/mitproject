@@ -44,7 +44,8 @@ require_once('assets/menu.php');
 &lt;/body&gt;
 &lt;/html&gt;
 </pre>
-<a class="btn btn-primary" href="javascript:;" id="tryOutHTML" data-toggle="modal" data-target="#exampleModalCenter">Try it out</a>
+<a class="btn btn-primary" href="javascript:;" id="tryOutHTML" data-toggle="modal" data-target="#exampleModalCenter"
+  data-lang="html" data-node="endpoint" data-content="Web/?lang=html&content=<!DOCTYPE html>%0A<html>%0A<title>HTML Tutorial</title>%0A<body>%0A  <h1>Hello student</h1>%0A</body>%0A</html>" >Try it out</a>
                     </div>
                 </div>
               

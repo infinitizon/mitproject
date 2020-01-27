@@ -1,6 +1,6 @@
 var config = {
     "html":{
-        "endpoint":"local"
+        "endpoint":"http://localhost:81/MITProject/"
     },
     "php":{
         "endpoint":"http://localhost:81/MITProject/"
