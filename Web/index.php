@@ -69,7 +69,7 @@ require_once('../assets/config.php');
             <span class="dot" style="background:#5AC05A;"></span>
             </div>
             <div class="column middle">
-                <input type="text" value="localhost">
+                <input type="text" id="url" value="file:///C:/Users/Desktop/myFile.html">
             </div>
             <div class="column right">
             <div style="float:right">

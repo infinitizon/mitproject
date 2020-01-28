@@ -11,6 +11,7 @@ function getParamValue(paramName)
 }
 $(function(){
     var lang = getParamValue('lang');
+    var $url = getParamValue('url');
     var langFromIFrame = undefined
     if(lang !='' && typeof lang !== 'undefined'){
         langFromIFrame = $('#language option:contains('+lang+')').val();
@@ -19,6 +20,11 @@ $(function(){
         $('.container').removeClass( "container" )
         $('#language').css('display','none')
         //     $("#my_form").submit()
+    }
+    if($url !='' && typeof $url !== 'undefined'){
+        $('#url').val($url)
+    } else {
+        $('#url').val("file:///C:/Users/Desktop/myFile.html")
     }
 
     var myTextArea = document.getElementById("myEditor");
