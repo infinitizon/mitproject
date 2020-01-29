@@ -91,10 +91,10 @@ require_once('../assets/menu.php');
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
-                        <a href="<?php echo WEB_ROOT."tutorial/html/editor.php" ?>" class="btn btn-sm btn-primary">Editor &nbsp;&nbsp;&nbsp;<<= Previous</a>
+                        <a href="<?php echo WEB_ROOT."tutorial/html/editor.php" ?>" class="btn btn-sm btn-primary">Editor &nbsp;&nbsp;&nbsp;:<< Previous</a>
                     </div>
                     <div class="col-sm-6">
-                        <a href="<?php echo WEB_ROOT."tutorial/html/quiz.php" ?>" class="btn btn-sm btn-primary float-right">Next =>> &nbsp;&nbsp;&nbsp;Quiz:</a>
+                        <a href="<?php echo WEB_ROOT."tutorial/html/quiz.php" ?>" class="btn btn-sm btn-primary float-right">Next >>: &nbsp;&nbsp;&nbsp;Basics</a>
                     </div>
                 </div>
             </div>

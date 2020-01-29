@@ -76,7 +76,7 @@ require_once('../assets/menu.php');
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
-                        <a href="<?php echo WEB_ROOT."tutorial/html/editor.php" ?>" class="btn btn-sm btn-primary float-right">Next >>: &nbsp;&nbsp;&nbsp;Editor</a>
+                        <a href="<?php echo WEB_ROOT."tutorial/html/editor.php" ?>" class="btn btn-sm btn-primary float-right">Next =>> &nbsp;&nbsp;&nbsp;Editor</a>
                     </div>
                 </div>
             </div>
