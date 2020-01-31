@@ -97,6 +97,9 @@ require_once('../assets/menu.php');
                         <a href="<?php echo WEB_ROOT."tutorial/html/quiz.php" ?>" class="btn btn-sm btn-primary float-right">Next =>> &nbsp;&nbsp;&nbsp;Quiz:</a>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-sm-12">&nbsp;</div>
+                </div>
             </div>
           </div>
         </div>
