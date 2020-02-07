@@ -6,3 +6,6 @@ $C = [
 foreach($C as $key => $val){
     define($key, $val);
 }
+// echo "<pre>";
+// var_dump($_SERVER);
+// echo "</pre>";
