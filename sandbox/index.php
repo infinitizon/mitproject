@@ -90,11 +90,11 @@ if (substr($editorContent, 0, strlen($prefix)) == $prefix) {
 
 // var_dump($editorContent);
 try{
-ob_start();
-eval($editorContent);
-$this_string = ob_get_contents();
-ob_end_clean();
-echo $this_string;
+    ob_start();
+    eval($editorContent);
+    $this_string = ob_get_contents();
+    ob_end_clean();
+    echo $this_string;
 } catch (Exception $e) {
     echo $e->getMessage();
 }

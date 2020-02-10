@@ -268,9 +268,8 @@
                             <i class="fa fa-cogs"></i><span class="nav-text">Setup</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="./login.html">Login</a></li>
-                            <li><a href="./page-register.html">Register</a></li>
-                            <li><a href="./page-lock.html">Lock Screen</a></li>
+                            <li><a href="./login.php">Login</a></li>
+                            <li><a href="./register.php">Register</a></li>
                         </ul>
                     </li>
                 </ul>
