@@ -30,3 +30,28 @@ function fileTypes(){
 		'tbl_str_prd' => 1019
 	);
 }
+function buildMenu($parent, $menu, $options) {
+	$html = "";
+	if (isset($menu['parents'][$parent])) {
+		$html .= ($options['startMenuBuild']?"<ul class='metismenu' id='menu'>\n\r":"\n\r<ul aria-expanded='false'>\n\r");
+		$startMenuBuild = false;
+		foreach ($menu['parents'][$parent] as $itemId) {
+			if(!isset($menu['parents'][$itemId])) {
+				$html .= '<li> <a href="'.$menu['items'][$itemId]['link'].'">'.$menu['items'][$itemId]['menu_name']."</a></li>\n\r";
+			}
+			if(isset($menu['parents'][$itemId])) {
+				$html .= "<li>\n\r
+					<a class='has-arrow' href='javascript:void()' aria-expanded='false'>
+						<span class='nav-text'>".
+							$menu['items'][$itemId]['menu_name'].
+						"</span>
+					</a>";
+					$options['startMenuBuild'] = false;
+					$html .= buildMenu($itemId, $menu, $options);
+				$html .= "\n\r</li>\n\r";
+			}
+		}
+		$html .= "</ul>";
+	}
+	return $html;
+}
