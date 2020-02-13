@@ -34,10 +34,14 @@ class Tests extends CI_Model{
     function get_home_content($link = 'home') {
         $this->db->select('*');
         $this->db->from('cms');
-        $this->db->where('icon', $link);
+if(!$this->uri->segment(2)){
+        $this->db->where('icon', $this->uri->segment(1)?$this->uri->segment(1):'home');
+}else {
+    $this->db->where('link', $link);
+}
         $query = $this->db->get();
         $row = $query->result();
-        echo $this->db->last_query();
+        // echo $this->db->last_query();
         // var_dump($row);
         if ($query->num_rows() == 1) {
             $row = $query->result()[0];

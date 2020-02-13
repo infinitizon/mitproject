@@ -1,7 +1,7 @@
 <?php
 $C = [
-    'WEB_ROOT' => 'http://localhost:81/Mitproject',
-    'TUTORIAL_ROOT' => 'http://localhost:81/Mitproject/tutorial2',
+    'WEB_ROOT' => "http://localhost:{$_SERVER['SERVER_PORT']}/Mitproject",
+    'TUTORIAL_ROOT' => "http://localhost:{$_SERVER['SERVER_PORT']}/Mitproject/tutorial2",
 ];
 foreach($C as $key => $val){
     define($key, $val);

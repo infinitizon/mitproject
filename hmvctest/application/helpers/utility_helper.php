@@ -4,7 +4,7 @@ function assets_url(){
 	return base_url().'assets';
 }
 function webroot_url(){
-	return 'http://localhost:81/Mitproject';
+	return "http://localhost:{$_SERVER['SERVER_PORT']}/Mitproject";
 }
 
 function email_config(){
