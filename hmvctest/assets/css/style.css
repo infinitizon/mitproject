@@ -4054,7 +4054,7 @@ button.close {
 
 @media (min-width: 992px) {
   .modal-lg {
-    max-width: 800px; } }
+    max-width: 1100px; } }
 
 .tooltip {
   position: absolute;
@@ -14700,3 +14700,4 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
       color: #fff; }
 
 /*# sourceMappingURL=style.css.map */
+/* .code-display{background:rgba(247, 244, 244, 0.4); padding:10px;} */

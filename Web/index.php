@@ -9,20 +9,20 @@ require_once('../assets/config.php');
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 
-    <link rel="stylesheet" href="<?php echo WEB_ROOT; ?>assets/vendor/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo WEB_ROOT; ?>assets/vendor/fontawesome/5.12.0/css/all.min.css">
+    <link rel="stylesheet" href="<?php echo WEB_ROOT; ?>/assets/vendor/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo WEB_ROOT; ?>/assets/vendor/fontawesome/5.12.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
-    <script src="<?php echo WEB_ROOT; ?>assets/vendor/codemirror-5.49.2/lib/codemirror.js"></script>
-    <link rel="stylesheet" href="<?php echo WEB_ROOT; ?>assets/vendor/codemirror-5.49.2/lib/codemirror.css">
-    <script src="<?php echo WEB_ROOT; ?>assets/vendor/codemirror-5.49.2/mode/javascript/javascript.js"></script>
-    <script src="<?php echo WEB_ROOT; ?>assets/vendor/codemirror-5.49.2/mode/python/python.js"></script>
-    <script src="<?php echo WEB_ROOT; ?>assets/vendor/codemirror-5.49.2/mode/htmlmixed/htmlmixed.js"></script>
-    <script src="<?php echo WEB_ROOT; ?>assets/vendor/codemirror-5.49.2/mode/htmlembedded/htmlembedded.js"></script>
-    <script src="<?php echo WEB_ROOT; ?>assets/vendor/codemirror-5.49.2/addon/mode/multiplex.js"></script>
-    <script src="<?php echo WEB_ROOT; ?>assets/vendor/codemirror-5.49.2/mode/xml/xml.js"></script>
-    <script src="<?php echo WEB_ROOT; ?>assets/vendor/codemirror-5.49.2/mode/css/css.js"></script>
-    <script src="<?php echo WEB_ROOT; ?>assets/vendor/codemirror-5.49.2/mode/clike/clike.js"></script>
-    <script src="<?php echo WEB_ROOT; ?>assets/vendor/codemirror-5.49.2/mode/php/php.js"></script>
+    <script src="<?php echo WEB_ROOT; ?>/assets/vendor/codemirror-5.49.2/lib/codemirror.js"></script>
+    <link rel="stylesheet" href="<?php echo WEB_ROOT; ?>/assets/vendor/codemirror-5.49.2/lib/codemirror.css">
+    <script src="<?php echo WEB_ROOT; ?>/assets/vendor/codemirror-5.49.2/mode/javascript/javascript.js"></script>
+    <script src="<?php echo WEB_ROOT; ?>/assets/vendor/codemirror-5.49.2/mode/python/python.js"></script>
+    <script src="<?php echo WEB_ROOT; ?>/assets/vendor/codemirror-5.49.2/mode/htmlmixed/htmlmixed.js"></script>
+    <script src="<?php echo WEB_ROOT; ?>/assets/vendor/codemirror-5.49.2/mode/htmlembedded/htmlembedded.js"></script>
+    <script src="<?php echo WEB_ROOT; ?>/assets/vendor/codemirror-5.49.2/addon/mode/multiplex.js"></script>
+    <script src="<?php echo WEB_ROOT; ?>/assets/vendor/codemirror-5.49.2/mode/xml/xml.js"></script>
+    <script src="<?php echo WEB_ROOT; ?>/assets/vendor/codemirror-5.49.2/mode/css/css.js"></script>
+    <script src="<?php echo WEB_ROOT; ?>/assets/vendor/codemirror-5.49.2/mode/clike/clike.js"></script>
+    <script src="<?php echo WEB_ROOT; ?>/assets/vendor/codemirror-5.49.2/mode/php/php.js"></script>
 </head>
 <body>
     <div class="container">
@@ -88,7 +88,7 @@ require_once('../assets/config.php');
             </div>
         </form>
     </div>
-    <script src="<?php echo WEB_ROOT; ?>assets/vendor/jquery-3.4.1.min.js"></script>
+    <script src="<?php echo WEB_ROOT; ?>/assets/vendor/jquery-3.4.1.min.js"></script>
     <script src="<?php echo WEB_ROOT; ?>/assets/js/config.js"></script>
     <script src="assets/js/script.js"></script>
 </body>

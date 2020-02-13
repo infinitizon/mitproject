@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="<?php echo assets_url(); ?>/plugins/chartist/css/chartist.min.css">
     <link rel="stylesheet" href="<?php echo assets_url(); ?>/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css">
     <!-- Custom Stylesheet -->
+
+    <link rel="stylesheet" href="<?php echo webroot_url(); ?>/assets/vendor/codemirror-5.49.2/lib/codemirror.css">
+    <link rel="stylesheet" href="<?php echo webroot_url(); ?>/assets/vendor/prettify/src/prettify.css">
     <link href="<?php echo assets_url(); ?>/css/style.css" rel="stylesheet">
 
 </head>
@@ -251,7 +254,7 @@
         <div class="nk-sidebar">           
             <div class="nk-nav-scroll">
             <?php
-             echo buildMenu(0, $result, array('startMenuBuild'=>true)); 
+             echo buildMenu(0, $sidebar, array('startMenuBuild'=>true)); 
             ?>
             </div>
         </div>
@@ -320,9 +323,27 @@
     <script src="<?php echo assets_url(); ?>/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js"></script>
 
 
+    <script src="<?php echo webroot_url(); ?>/assets/vendor/prettify/src/prettify.js"></script>
+    <script src="<?php echo webroot_url(); ?>/assets/vendor/prettify/src/lang-css.js"></script>
+    <script src="<?php echo webroot_url(); ?>/assets/js/config.js"></script>
+    <script src="<?php echo assets_url(); ?>/js/script.js"></script>
 
     <script src="<?php echo assets_url(); ?>/js/dashboard/dashboard-1.js"></script>
 
 </body>
 
 </html>
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        <iframe id="frame" src="" width="100%" height="500" frameBorder="0"></iframe>
+        </div>
+    </div>
+    </div>
+</div>

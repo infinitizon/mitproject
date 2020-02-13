@@ -37,11 +37,21 @@ function buildMenu($parent, $menu, $options) {
 		$startMenuBuild = false;
 		foreach ($menu['parents'][$parent] as $itemId) {
 			if(!isset($menu['parents'][$itemId])) {
-				$html .= '<li> <a href="'.$menu['items'][$itemId]['link'].'">'.$menu['items'][$itemId]['menu_name']."</a></li>\n\r";
+				$options['current_parent'] = $itemId;
+				if($menu['items'][$itemId]['link'] == 'link-label') 
+					$html .= '<li class="nav-label">'.$menu['items'][$itemId]['menu_name']."</li>\n\r";
+				else
+					$html .= '<li> <a href="'.base_url().$menu['items'][$itemId]['link'].'">'.
+							($menu['items'][$itemId]['par_id']==0 ? 
+								$menu['items'][$itemId]['icon'].'<span class="nav-text">'.$menu['items'][$itemId]['menu_name'].'</span>' :
+								$menu['items'][$itemId]['menu_name']).
+					// @$options['current_parent']."-".$itemId."-".$menu['items'][$itemId]['menu_name'].
+					"</a></li>\n\r";
 			}
 			if(isset($menu['parents'][$itemId])) {
 				$html .= "<li>\n\r
 					<a class='has-arrow' href='javascript:void()' aria-expanded='false'>
+						{$menu['items'][$itemId]['icon']}
 						<span class='nav-text'>".
 							$menu['items'][$itemId]['menu_name'].
 						"</span>

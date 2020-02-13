@@ -9,8 +9,12 @@ class Test extends MX_Controller {
 		$data['title'] = "Test"; 
 		
 		$this->load->model('tests');
-		$result = $this->tests->multi_menu();
-		$data['result'] = $result;
+		$data['sidebar'] = $this->tests->multi_menu();
+		
+		// echo "<pre>";
+		// var_dump($this->uri);
+		// echo "</pre>";
+		$data['content'] = $this->tests->get_home_content($this->uri->uri_string);
 		echo Modules::run("templates/general", $data);
 	}
 }

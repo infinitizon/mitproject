@@ -30,4 +30,20 @@ class Tests extends CI_Model{
             return array("success"=>false, "message"=>'Incorrect username or password');
         }
     }
+    // var_dump('Hello');
+    function get_home_content($link = 'home') {
+        $this->db->select('*');
+        $this->db->from('cms');
+        $this->db->where('icon', $link);
+        $query = $this->db->get();
+        $row = $query->result();
+        echo $this->db->last_query();
+        // var_dump($row);
+        if ($query->num_rows() == 1) {
+            $row = $query->result()[0];
+            return (object) array("success"=>true, "message"=>$row);
+        }else {
+            return (object) array("success"=>false, "message"=>'Incorrect username or password');
+        }
+    }
 }
