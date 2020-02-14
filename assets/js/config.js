@@ -1,5 +1,8 @@
 var config = {
-    "html":{
+    "webroot":{
+        "endpoint":"http://localhost:"+location.port+"/MITProject/"
+    },
+    "php":{
         "endpoint":"http://localhost:"+location.port+"/MITProject/"
     },
     "php":{

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Landing extends CI_Model{
+class Profiles extends CI_Model{
     // echo "Hello";
     function multi_menu() {
         $this->db->select('*');
@@ -26,6 +26,7 @@ class Landing extends CI_Model{
             return array("success"=>false, "message"=>'Incorrect username or password');
         }
     }
+    
     function get_home_content() {
         $this->db->select('*');
         $this->db->from('cms');

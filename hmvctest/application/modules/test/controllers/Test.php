@@ -12,7 +12,7 @@ class Test extends MX_Controller {
 		$data['sidebar'] = $this->tests->multi_menu();
 		
 		// echo "<pre>";
-		// var_dump($this->uri->segment(2));
+		// var_dump($this->uri->segment(1));
 		// echo "</pre>";
 		$data['content'] = $this->tests->get_home_content($this->uri->uri_string);
 		echo Modules::run("templates/general", $data);
