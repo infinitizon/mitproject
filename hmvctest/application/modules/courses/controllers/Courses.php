@@ -1,14 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Admin extends MX_Controller {
+class Courses extends MX_Controller {
 
 	public function index() {
 		if (!$this->session->userdata('logged_in')) redirect('admin/login');
 
 		$this->load->model('test/tests');
 		$data['sidebar'] = $this->tests->multi_menu();
-		$data['module'] = "admin";
+		$data['module'] = "courses";
 		$data['view_file'] = "home"; 
 		$data['title'] = "login";
 		echo Modules::run("templates/admin", $data);
