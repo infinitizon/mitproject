@@ -17,8 +17,8 @@
 
     <link rel="stylesheet" href="<?php echo webroot_url(); ?>/assets/vendor/codemirror-5.49.2/lib/codemirror.css">
     <link rel="stylesheet" href="<?php echo webroot_url(); ?>/assets/vendor/prettify/src/prettify.css">
-    <link href="dist/css/fontawesome-iconpicker.min.css" rel="stylesheet">
     <link href="<?php echo assets_url(); ?>/css/style.css" rel="stylesheet">
+    <link href="<?php echo webroot_url(); ?>/assets/vendor/fontawesome-iconpicker/3.0.0/dist/css/fontawesome-iconpicker.min.css" rel="stylesheet">
 
 </head>
 
@@ -330,6 +330,7 @@
     <script src="<?php echo assets_url(); ?>/js/script.js"></script>
 
     <script src="<?php echo assets_url(); ?>/js/dashboard/dashboard-1.js"></script>
+<script src="<?php echo webroot_url(); ?>/assets/vendor/fontawesome-iconpicker/3.0.0/dist/js/fontawesome-iconpicker.js"></script>
 
 </body>
 
