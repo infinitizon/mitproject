@@ -17,6 +17,7 @@
 
     <link rel="stylesheet" href="<?php echo webroot_url(); ?>/assets/vendor/codemirror-5.49.2/lib/codemirror.css">
     <link rel="stylesheet" href="<?php echo webroot_url(); ?>/assets/vendor/prettify/src/prettify.css">
+    <link href="dist/css/fontawesome-iconpicker.min.css" rel="stylesheet">
     <link href="<?php echo assets_url(); ?>/css/style.css" rel="stylesheet">
 
 </head>

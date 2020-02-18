@@ -3,7 +3,10 @@
     <div class="col-xl-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Custom content <span class="text-right"><i class="far fa-plus-square"></i></span> </h4>
+                <div class="card-header">
+                    <h4 class="card-title">
+                        <?php echo anchor('courses/create','<i class="far fa-plus-square fa-2x float-right text-primary"></i>'); ?>Custom content </h4>
+                </div>
                 <div class="basic-list-group">
                     <div class="list-group">
                         <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">

@@ -13,13 +13,15 @@ class Courses extends MX_Controller {
 		$data['title'] = "login";
 		echo Modules::run("templates/admin", $data);
 	}
-	public function login($result=array()) {
+	public function create($result=array()) {
 		if (!empty($result))
 			$data['result'] = $result;
-		$data['module'] = "admin";
-		$data['view_file'] = "login"; 
-		$data['title'] = "Login"; 
-		echo Modules::run("templates/auth", $data);
+		$this->load->model('test/tests');
+		$data['sidebar'] = $this->tests->multi_menu();
+		$data['module'] = "courses";
+		$data['view_file'] = "create"; 
+		$data['title'] = "Create Courses"; 
+		echo Modules::run("templates/admin", $data);
 	}
 	public function logout($result=array()) {
 		$this->session->unset_userdata('logged_in');
