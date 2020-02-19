@@ -8,6 +8,17 @@
     <title>Quixlab - Bootstrap Admin Dashboard Template by Themefisher.com</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-85082661-5"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'UA-85082661-5');
+    </script>
     <!-- Pignose Calender -->
     <link href="<?php echo assets_url(); ?>/plugins/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
     <!-- Chartist -->
@@ -19,7 +30,58 @@
     <link rel="stylesheet" href="<?php echo webroot_url(); ?>/assets/vendor/prettify/src/prettify.css">
     <link href="<?php echo assets_url(); ?>/css/style.css" rel="stylesheet">
     <link href="<?php echo webroot_url(); ?>/assets/vendor/fontawesome-iconpicker/3.0.0/dist/css/fontawesome-iconpicker.min.css" rel="stylesheet">
+    <style>
+        footer {
+            font-style: italic;
+            background: #f7f7f7;
+            padding: 60px;
+            text-align: center;
+            margin-top: 60px;
+        }
 
+        pre {
+            text-align: left;
+        }
+
+        .form-control, .form-group {
+            position: relative;
+        }
+
+        p.lead {
+            max-width: 800px;
+            margin: 0 auto 20px auto;
+        }
+
+        div.lead {
+            margin: 30px 0;
+        }
+
+        a.action-placement {
+            margin: 0 4px 4px 4px;
+            display: inline-block;
+            /*border-bottom: 1px dotted #428BCA;*/
+            text-decoration: none;
+        }
+
+        a.action-placement.active {
+            color: #5CB85C;
+        }
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .lead iframe {
+            display: inline-block;
+            vertical-align: middle;
+        }
+    </style>
 </head>
 
 <body>
@@ -304,7 +366,6 @@
     <script src="<?php echo assets_url(); ?>/js/settings.js"></script>
     <script src="<?php echo assets_url(); ?>/js/gleek.js"></script>
     <script src="<?php echo assets_url(); ?>/js/styleSwitcher.js"></script>
-
     <!-- Chartjs -->
     <script src="<?php echo assets_url(); ?>/plugins/chart.js/Chart.bundle.min.js"></script>
     <!-- Circle progress -->
@@ -322,16 +383,19 @@
     <!-- ChartistJS -->
     <script src="<?php echo assets_url(); ?>/plugins/chartist/js/chartist.min.js"></script>
     <script src="<?php echo assets_url(); ?>/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js"></script>
-
-
+    <!-- Others -->
     <script src="<?php echo webroot_url(); ?>/assets/vendor/prettify/src/prettify.js"></script>
     <script src="<?php echo webroot_url(); ?>/assets/vendor/prettify/src/lang-css.js"></script>
     <script src="<?php echo webroot_url(); ?>/assets/js/config.js"></script>
     <script src="<?php echo assets_url(); ?>/js/script.js"></script>
 
     <script src="<?php echo assets_url(); ?>/js/dashboard/dashboard-1.js"></script>
-<script src="<?php echo webroot_url(); ?>/assets/vendor/fontawesome-iconpicker/3.0.0/dist/js/fontawesome-iconpicker.js"></script>
-
+    <script src="<?php echo webroot_url(); ?>/assets/vendor/fontawesome-iconpicker/3.0.0/dist/js/fontawesome-iconpicker.js"></script>
+    <script>
+    $(function () {
+        $('.icp-auto').iconpicker();
+    });
+</script>
 </body>
 
 </html>

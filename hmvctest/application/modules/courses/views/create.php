@@ -16,7 +16,7 @@
                     </div>
                     <div class="form-group">
                         <label>Font Icon</label>
-                        <input type="text" class="form-control" placeholder="1234 Main St">
+                        <input type="text" data-placement="bottomRight" class="form-control icp icp-auto" name="font_awesome" />
                     </div>
                     <div class="form-group">
                         <label>Address 2</label>
