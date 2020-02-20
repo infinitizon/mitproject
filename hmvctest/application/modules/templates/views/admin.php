@@ -5,31 +5,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Quixlab - Bootstrap Admin Dashboard Template by Themefisher.com</title>
+    <title><?php echo $title; ?></title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-85082661-5"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-
-        gtag('js', new Date());
-        gtag('config', 'UA-85082661-5');
-    </script>
-    <!-- Pignose Calender -->
-    <link href="<?php echo assets_url(); ?>/plugins/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
-    <!-- Chartist -->
-    <link rel="stylesheet" href="<?php echo assets_url(); ?>/plugins/chartist/css/chartist.min.css">
-    <link rel="stylesheet" href="<?php echo assets_url(); ?>/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css">
-    <!-- Custom Stylesheet -->
 
     <link rel="stylesheet" href="<?php echo webroot_url(); ?>/assets/vendor/codemirror-5.49.2/lib/codemirror.css">
     <link rel="stylesheet" href="<?php echo webroot_url(); ?>/assets/vendor/prettify/src/prettify.css">
     <link href="<?php echo assets_url(); ?>/css/style.css" rel="stylesheet">
-    <link href="<?php echo webroot_url(); ?>/assets/vendor/fontawesome-iconpicker/3.0.0/dist/css/fontawesome-iconpicker.min.css" rel="stylesheet">
     <style>
         footer {
             font-style: italic;
@@ -82,6 +64,13 @@
             vertical-align: middle;
         }
     </style>
+    <?php 
+        foreach($styles as $style) {
+    ?>
+        <link rel="stylesheet" href="<?php echo $style; ?>">
+    <?php
+        }
+    ?>
 </head>
 
 <body>
@@ -366,36 +355,14 @@
     <script src="<?php echo assets_url(); ?>/js/settings.js"></script>
     <script src="<?php echo assets_url(); ?>/js/gleek.js"></script>
     <script src="<?php echo assets_url(); ?>/js/styleSwitcher.js"></script>
-    <!-- Chartjs -->
-    <script src="<?php echo assets_url(); ?>/plugins/chart.js/Chart.bundle.min.js"></script>
-    <!-- Circle progress -->
-    <script src="<?php echo assets_url(); ?>/plugins/circle-progress/circle-progress.min.js"></script>
-    <!-- Datamap -->
-    <script src="<?php echo assets_url(); ?>/plugins/d3v3/index.js"></script>
-    <script src="<?php echo assets_url(); ?>/plugins/topojson/topojson.min.js"></script>
-    <script src="<?php echo assets_url(); ?>/plugins/datamaps/datamaps.world.min.js"></script>
-    <!-- Morrisjs -->
-    <script src="<?php echo assets_url(); ?>/plugins/raphael/raphael.min.js"></script>
-    <script src="<?php echo assets_url(); ?>/plugins/morris/morris.min.js"></script>
-    <!-- Pignose Calender -->
-    <script src="<?php echo assets_url(); ?>/plugins/moment/moment.min.js"></script>
-    <script src="<?php echo assets_url(); ?>/plugins/pg-calendar/js/pignose.calendar.min.js"></script>
-    <!-- ChartistJS -->
-    <script src="<?php echo assets_url(); ?>/plugins/chartist/js/chartist.min.js"></script>
-    <script src="<?php echo assets_url(); ?>/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js"></script>
-    <!-- Others -->
-    <script src="<?php echo webroot_url(); ?>/assets/vendor/prettify/src/prettify.js"></script>
-    <script src="<?php echo webroot_url(); ?>/assets/vendor/prettify/src/lang-css.js"></script>
     <script src="<?php echo webroot_url(); ?>/assets/js/config.js"></script>
-    <script src="<?php echo assets_url(); ?>/js/script.js"></script>
-
-    <script src="<?php echo assets_url(); ?>/js/dashboard/dashboard-1.js"></script>
-    <script src="<?php echo webroot_url(); ?>/assets/vendor/fontawesome-iconpicker/3.0.0/dist/js/fontawesome-iconpicker.min.js"></script>
-    <script>
-    $(function () {
-        $('.icp-auto').iconpicker();
-    });
-</script>
+    
+<?php
+    foreach($scripts as $script) {
+?>
+<script src="<?php echo  $script; ?>"></script>
+<?php } ?>
+?>
 </body>
 
 </html>

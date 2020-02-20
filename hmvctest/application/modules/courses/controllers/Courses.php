@@ -11,6 +11,8 @@ class Courses extends MX_Controller {
 		$data['module'] = "courses";
 		$data['view_file'] = "home"; 
 		$data['title'] = "login";
+		$data['styles'] = [];
+		$data['scripts'] = [];
 		echo Modules::run("templates/admin", $data);
 	}
 	public function create($result=array()) {
@@ -21,6 +23,17 @@ class Courses extends MX_Controller {
 		$data['module'] = "courses";
 		$data['view_file'] = "create"; 
 		$data['title'] = "Create Courses"; 
+		$data['styles'] = [
+			assets_url()."/plugins/summernote/dist/summernote.css",
+			webroot_url()."/assets/vendor/fontawesome-iconpicker/3.0.0/dist/css/fontawesome-iconpicker.min.css",
+		];
+		$data['scripts'] = [
+			assets_url()."/plugins/summernote/dist/summernote.min.js",
+			assets_url()."/plugins/summernote/dist/summernote-init.js",
+			webroot_url()."/assets/vendor/fontawesome-iconpicker/3.0.0/dist/js/fontawesome-iconpicker.min.js",
+			assets_url()."/js/course.js",
+		];
+		if()
 		echo Modules::run("templates/admin", $data);
 	}
 	public function logout($result=array()) {
