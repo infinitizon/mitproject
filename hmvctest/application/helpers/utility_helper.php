@@ -8,7 +8,6 @@ function webroot_url(){
 }
 
 function email_config(){
-	
 	return Array(
 		'protocol' => 'smtp',
 		'smtp_host' => "smtp.mailtrap.io",
@@ -43,7 +42,7 @@ function buildMenu($parent, $menu, $options) {
 				else
 					$html .= '<li> <a href="'.base_url().$menu['items'][$itemId]['link'].'">'.
 							($menu['items'][$itemId]['par_id']==0 ? 
-								$menu['items'][$itemId]['icon'].'<span class="nav-text">'.$menu['items'][$itemId]['menu_name'].'</span>' :
+								'<i class="'.$menu['items'][$itemId]['icon'].'"></i>'.'<span class="nav-text">'.$menu['items'][$itemId]['menu_name'].'</span>' :
 								$menu['items'][$itemId]['menu_name']).
 					// @$options['current_parent']."-".$itemId."-".$menu['items'][$itemId]['menu_name'].
 					"</a></li>\n\r";
@@ -51,7 +50,7 @@ function buildMenu($parent, $menu, $options) {
 			if(isset($menu['parents'][$itemId])) {
 				$html .= "<li>\n\r
 					<a class='has-arrow' href='javascript:void()' aria-expanded='false'>
-						{$menu['items'][$itemId]['icon']}
+						<i class='{$menu['items'][$itemId]['icon']}'></i>
 						<span class='nav-text'>".
 							$menu['items'][$itemId]['menu_name'].
 						"</span>

@@ -390,7 +390,7 @@
     <script src="<?php echo assets_url(); ?>/js/script.js"></script>
 
     <script src="<?php echo assets_url(); ?>/js/dashboard/dashboard-1.js"></script>
-    <script src="<?php echo webroot_url(); ?>/assets/vendor/fontawesome-iconpicker/3.0.0/dist/js/fontawesome-iconpicker.js"></script>
+    <script src="<?php echo webroot_url(); ?>/assets/vendor/fontawesome-iconpicker/3.0.0/dist/js/fontawesome-iconpicker.min.js"></script>
     <script>
     $(function () {
         $('.icp-auto').iconpicker();

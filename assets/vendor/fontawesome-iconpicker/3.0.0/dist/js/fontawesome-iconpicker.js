@@ -529,7 +529,7 @@
                 this.popover.append(d);
             }
             if (this.options.animation === true) {
-                this.popover.addClass("fade");
+                this.popover.addClass("show");
             }
             return this.popover;
         },

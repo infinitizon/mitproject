@@ -5,18 +5,18 @@
             <div class="basic-form">
                 <form>
                     <div class="form-row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <label>Course Name</label>
                             <input type="text" class="form-control" placeholder="Enter a course name" name="menu_name">
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <label>Base link for the course</label>
-                            <input type="password" class="form-control" placeholder="Password">
+                            <input type="text" class="form-control" placeholder="A link for course, e.g. html">
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Font Icon</label>
-                        <input type="text" data-placement="bottomRight" class="form-control icp icp-auto" name="font_awesome" />
+                        <div class="form-group col-md-4">
+                            <label>Font Icon</label>
+                            <input type="text" data-placement="bottomRight" class="form-control icp icp-auto" name="font_awesome" />
+                        </div>
                     </div>
                     <div class="form-group">
                         <label>Address 2</label>
