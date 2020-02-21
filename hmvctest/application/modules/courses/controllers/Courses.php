@@ -43,8 +43,8 @@ class Courses extends MX_Controller {
 			if($this->form_validation->run()) {
 				$this->load->model('Common');
 				$this->Common->setTable('cms');
-				// var_dump($this->session->userdata('logged_in')->r_k);
 				$_POST['users_r_k'] = $this->session->userdata('logged_in')->r_k;
+				$_POST['is_course'] = 1;
 				$this->Common->_insert($_POST) ;
 				$fields = array('menu_name' => "",'link' => "",'icon' => "",'content' => "",);
 				$result = array('success'=>true,'message'=>'Details submitted successfully', 'fields'=>$fields);
