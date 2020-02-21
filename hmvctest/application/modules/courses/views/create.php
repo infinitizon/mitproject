@@ -10,20 +10,26 @@
             </div>
             <div class="basic-form">
                 <form name="course" id="course">
+                <?php 
+                    echo isset($course->r_k)? "<input type='hidden' name='r_k' value='$course->r_k' />":'';
+                ?>
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label>Course Name</label>
-                            <input type="text" class="form-control" name="menu_name" id="menu_name" placeholder="Enter a course name" />
+                            <input type="text" class="form-control" placeholder="Enter a course name"
+                                name="menu_name" id="menu_name" value="<?php echo isset($course->menu_name) ? $course->menu_name : '' ?>" />
                             <span class="error text-danger"></span>
                         </div>
                         <div class="form-group col-md-4">
                             <label>Base link for the course</label>
-                            <input type="text" class="form-control" name="link" id="link" placeholder="A link for course, e.g. html" />
+                            <input type="text" class="form-control" placeholder="A link for course, e.g. html"
+                                name="link" id="link" value="<?php echo isset($course->link) ? $course->link : '' ?>" />
                             <span class="error text-danger"></span>
                         </div>
                         <div class="form-group col-md-4">
                             <label>Font Icon</label>
-                            <input type="text" data-placement="bottomRight" name="icon" id="icon" class="form-control icp icp-auto" />
+                            <input type="text" data-placement="bottomRight" class="form-control icp icp-auto"
+                            name="icon" id="icon" value="<?php echo isset($course->icon) ? $course->icon : '' ?>" />
                             <span class="error text-danger"></span>
                         </div>
                     </div>
@@ -32,6 +38,7 @@
                             <label>Summary</label>
                             <span class="error text-danger"></span>
                             <div class="summernote" id="content">
+                                <?php echo isset($course->content) ? $course->content : '' ?>
                             </div>
                         </div>
                     </div>

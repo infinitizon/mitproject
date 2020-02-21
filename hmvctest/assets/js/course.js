@@ -20,9 +20,11 @@ $(function () {
                             }
                         });
                     }else{
-                        $('div.alert').addClass('alert-danger show').find('strong').html('Error! ').parent().find('span.message').html($result.message);
+                        $spanMessage = $('div.alert').addClass('alert-danger show').find('strong').html('Error! ').parent().find('span.message');
                         $.each($result.message, function(key, value) {
                             if(value) {
+                                $spanMessage.append(value)
+                                console.log(value);
                                 $('#' + key).addClass('is-invalid');
                                 $('#' + key).parents('.form-group').find('.error').html(value);
                             }else {
