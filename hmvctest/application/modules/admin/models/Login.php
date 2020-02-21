@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Login extends CI_Model{
 
     function user_exists($usr_nm, $pwd){
-        $this->db->select('*');
+        $this->db->select('u.r_k,u.email,ut.r_k ut_r_k,l.val_dsc');
         $this->db->from('users u');
         $this->db->join('users_user_type ut', 'u.r_k = ut.user');
         $this->db->join('t_wb_lov l', 'ut.user_type = l.r_k');

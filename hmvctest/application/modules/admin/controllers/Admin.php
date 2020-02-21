@@ -33,7 +33,10 @@ class Admin extends MX_Controller {
 			$this->load->model('login');
 			$result = $this->login->user_exists($this->input->post('username'), 
 											md5($this->input->post('password')));
-	// var_dump($result);
+// echo "<pre>";
+// var_dump($result);
+// echo "</pre>";
+// return;
 			if($result['success']){
 				$this->session->set_userdata('logged_in', (object)$result['message']);
 				if ($this->session->userdata('redirect')) {

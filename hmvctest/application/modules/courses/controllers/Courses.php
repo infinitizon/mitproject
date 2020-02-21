@@ -10,12 +10,13 @@ class Courses extends MX_Controller {
 		$data['sidebar'] = $this->tests->multi_menu();
 		$data['module'] = "courses";
 		$data['view_file'] = "home"; 
-		$data['title'] = "login";
+		$data['title'] = "Create Courses";
 		$data['styles'] = [];
 		$data['scripts'] = [];
 		echo Modules::run("templates/admin", $data);
 	}
 	public function create($result=array()) {
+		
 		if (!empty($result))
 			$data['result'] = $result;
 		$this->load->model('test/tests');
@@ -33,8 +34,32 @@ class Courses extends MX_Controller {
 			webroot_url()."/assets/vendor/fontawesome-iconpicker/3.0.0/dist/js/fontawesome-iconpicker.min.js",
 			assets_url()."/js/course.js",
 		];
-		if()
-		echo Modules::run("templates/admin", $data);
+		if($this->input->post()){
+			$this->load->library('form_validation');
+			$this->form_validation->set_rules('menu_name','Menu Name','required|trim|max_length[150]');
+			$this->form_validation->set_rules('link','Link','required|trim');
+			$this->form_validation->set_rules('icon','Icon','required|trim');
+			$this->form_validation->set_rules('content','Summary','required|trim');
+			if($this->form_validation->run()) {
+				$this->load->model('Common');
+				$this->Common->setTable('cms');
+				// var_dump($this->session->userdata('logged_in')->r_k);
+				$_POST['users_r_k'] = $this->session->userdata('logged_in')->r_k;
+				$this->Common->_insert($_POST) ;
+				$fields = array('menu_name' => "",'link' => "",'icon' => "",'content' => "",);
+				$result = array('success'=>true,'message'=>'Details submitted successfully', 'fields'=>$fields);
+			}else{
+				$fields = array(
+					'menu_name' => form_error('menu_name'),
+					'link' => form_error('link'),
+					'icon' => form_error('icon'),
+					'content' => form_error('content'),);
+				$result = array('success'=>false,'message'=>$fields);
+			}
+			echo json_encode($result);
+		} else {
+			echo Modules::run("templates/admin", $data);
+		}
 	}
 	public function logout($result=array()) {
 		$this->session->unset_userdata('logged_in');
