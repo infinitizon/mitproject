@@ -2,7 +2,7 @@ var config = {
     "webroot":{
         "endpoint":"http://localhost"+(location.port?":"+location.port:"")+"/mitproject/"
     },
-    "php":{
+    "html":{
         "endpoint":"http://localhost"+(location.port?":"+location.port:"")+"/mitproject/"
     },
     "php":{

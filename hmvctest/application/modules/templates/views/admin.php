@@ -306,7 +306,9 @@
         <div class="nk-sidebar">           
             <div class="nk-nav-scroll">
             <?php
-             echo buildMenu(0, $sidebar, array('startMenuBuild'=>true)); 
+                $this->load->model('test/tests');
+                $sidebar = $this->tests->multi_menu();
+                echo buildMenu(0, $sidebar, array('startMenuBuild'=>true)); 
             ?>
             </div>
         </div>

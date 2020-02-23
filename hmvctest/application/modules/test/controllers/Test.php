@@ -8,9 +8,7 @@ class Test extends MX_Controller {
 		$data['view_file'] = "index"; 
 		$data['title'] = "Test"; 
 		
-		$this->load->model('tests');
-		$data['sidebar'] = $this->tests->multi_menu();
-		
+		$this->load->model('tests');		
 		$data['content'] = $this->tests->get_home_content($this->uri->uri_string);
 		
 		echo Modules::run("templates/general", $data);

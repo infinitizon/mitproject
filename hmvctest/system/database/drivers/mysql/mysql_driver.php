@@ -490,5 +490,5 @@ class CI_DB_mysql_driver extends CI_DB {
 		// where the connection has already been closed for some reason.
 		@mysql_close($this->conn_id);
 	}
-
+ 
 }
