@@ -3,8 +3,15 @@ $(function () {
     $('form#lecture').on('submit', function (e) {
         e.preventDefault();
         content=$('.summernote').summernote('code');
-        data=$(this).serialize()+'&course_name='+$('#course option:selected').attr('data-link')+'&content='+content;
-        console.log(data);return;
+        // data=$(this).serialize()+'&course_name='+$('#course option:selected').attr('data-link')+'&'+{'content':content};
+        unindexed_array=$(this).serializeArray();
+        var data = {};
+        $.map(unindexed_array, function(n, i){
+            data[n['name']] = n['value'];
+        });
+        data['course_name'] = $('#course option:selected').attr('data-link');
+        data['content'] = content;
+        // console.log(data);return;
         $.ajax({
             type: "POST",
             url: config['webroot']['endpoint']+"hmvctest/lectures/create",

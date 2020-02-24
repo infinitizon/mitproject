@@ -44,7 +44,7 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-12">
-                            <label>Summary</label>
+                            <label>Content</label>
                             <span class="error text-danger"></span>
                             <div class="summernote" id="content">
                                 <?php echo isset($lecture->content) ? $lecture->content : '' ?>

@@ -44,12 +44,11 @@ class Lectures extends MX_Controller {
 			$data['title'] = "Create Lecture";
 		}
 		if($this->input->post()){
-			// var_dump($_POST);exit;
 			$this->load->library('form_validation');
 			$this->form_validation->set_rules('course','Course','required|trim');
 			$this->form_validation->set_rules('menu_name','Menu Name','required|trim|max_length[150]');
 			$this->form_validation->set_rules('link','Link','required|trim');
-			$this->form_validation->set_rules('content','Summary','required|trim');
+			$this->form_validation->set_rules('content','Content','required|trim');
 			if($this->form_validation->run()) {
 				$_POST['users_r_k'] = $this->session->userdata('logged_in')->r_k;
 				$_POST['is_course'] = 2;

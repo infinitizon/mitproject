@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost:'.$_SERVER['SERVER_PORT'].'/mitproject/hmvctest';
+$config['base_url'] = "http".(!empty($_SERVER['HTTPS'])?"s":"")."://".$_SERVER['HTTP_HOST'].'/hmvctest';
 
 /*
 |--------------------------------------------------------------------------

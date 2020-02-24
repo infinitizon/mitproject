@@ -47,6 +47,7 @@ class Common extends CI_Model {
 	}
 	function _insert_on_duplicate_update($data) {
 		$this->db->insert_on_duplicate_update($this->getTable(), $data);
+		// echo $this->db->last_query();
 	}
 
 	function _update($clauses, $data) {

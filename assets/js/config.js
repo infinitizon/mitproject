@@ -1,12 +1,12 @@
 var config = {
     "webroot":{
-        "endpoint":"http://localhost"+(location.port?":"+location.port:"")+"/mitproject/"
+        "endpoint":location.protocol+'//'+location.hostname+(location.port?":"+location.port:"")+"/"
     },
     "html":{
-        "endpoint":"http://localhost"+(location.port?":"+location.port:"")+"/mitproject/"
+        "endpoint":location.protocol+'//'+location.hostname+(location.port?":"+location.port:"")+"/"
     },
     "php":{
-        "endpoint":"http://localhost"+(location.port?":"+location.port:"")+"/mitproject/"
+        "endpoint":location.protocol+'//'+location.hostname+(location.port?":"+location.port:"")+"/"
     },
     "python" : {
         "endpoint":"http://127.0.0.1:5000/"
