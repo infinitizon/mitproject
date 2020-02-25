@@ -10,6 +10,7 @@
                 echo $content->message->content; 
             }
             ?>
+            hello test
         </div>
     </div>
 </div>
