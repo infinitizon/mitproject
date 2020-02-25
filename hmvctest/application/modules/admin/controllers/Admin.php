@@ -169,7 +169,7 @@ class Admin extends MX_Controller {
 		$data['view_file'] = "index";
 		echo Modules::run("templates/admin", $data);
 	}
-	public function cbt($result=array()) {
+	public function questions($result=null) {
 		echo "here";
 	}
 }

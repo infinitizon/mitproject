@@ -10,7 +10,7 @@
                 echo $content->message->content; 
             }
             ?>
-            hello test
+            inside test->index.php
         </div>
     </div>
 </div>

@@ -5,7 +5,7 @@ class Questions extends MX_Controller {
 
 	public function index() 
 	{
-		// echo 'here';exit;
+		echo 'Questions';exit;
 		if (!$this->session->userdata('logged_in')) redirect('admin/login');
 
 		$data['module'] = "questions";
