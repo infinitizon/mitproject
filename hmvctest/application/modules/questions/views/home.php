@@ -4,13 +4,12 @@
             <div class="card-body">
                 <div class="card-header">
                     <h4 class="card-title">
-                        <?php echo anchor('lectures/create','<i class="far fa-plus-square fa-2x float-right text-primary"></i>'); ?>
-                        Lectures 
+                        <?php echo anchor('questions/create','<i class="far fa-plus-square fa-2x float-right text-primary"></i>'); ?>
+                        Question Bank 
                     </h4>
                 </div>
                 <div class="basic-list-group">
                     <div class="list-group">
-                    questions
                         <?php
                         if ($lectures->num_rows() > 0) {
                             foreach($lectures->result() as $lecture) {

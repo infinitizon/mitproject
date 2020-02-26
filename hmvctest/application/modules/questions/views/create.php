@@ -10,48 +10,88 @@
             </div>
             <div class="basic-form">
                 <form name="lecture" id="lecture">
-                <?php              
-                    $this->load->model('Common');
-                    $this->Common->setTable('cms');
-                    $courses = $this->Common->get_where(['is_course'=>1]) ;
-                    echo isset($lecture->r_k)? "<input type='hidden' name='r_k' value='$lecture->r_k' />":'';
+                <?php  
+                    $this->db->select('l.r_k, l.val_id, l.val_dsc')->from('t_wb_lov l');
+                    $this->db->where("l.def_id LIKE '%QST-TP%'");
+                    $questionTypes = $this->db->get();
+                    // $questionTypes = $this->db->last_query();
+                    // echo $questionTypes;
+                    // echo isset($lecture->r_k)? "<input type='hidden' name='r_k' value='$lecture->r_k' />":'';
                 ?>
                     <div class="form-row">
                         <div class="form-group col-md-4">
-                            <label>Choose Course</label>
-                <select  class="form-control" id="course" name='course'>
-                    <?php
-                    if($courses->num_rows() > 0){
-                        foreach($courses->result() as $row){
-                            echo "<option data-link='$row->link' value='".$row->r_k."'".($lecture->par_id == $row->r_k?'selected="selected"':'').">".$row->menu_name."</option>";
-                        }
-                    }
-                    ?>
-                </select>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label>lecture Name</label>
-                            <input type="text" class="form-control" placeholder="Enter a lecture name"
-                                name="menu_name" id="menu_name" value="<?php echo isset($lecture->menu_name) ? $lecture->menu_name : '' ?>" />
-                            <span class="error text-danger"></span>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label>Base link for the lecture</label>
-                            <input type="text" class="form-control" placeholder="A link for lecture, e.g. html"
-                                name="link" id="link" value="<?php echo isset($lecture->link) ? substr($lecture->link, strrpos($lecture->link, '/') + 1) : '' ?>" />
-                            <span class="error text-danger"></span>
+                            <label>Choose Question</label>
+                            <select  class="form-control" id="questionType" name='questionType'>
+                                <option value=''>Select Question Type</option>";
+                                <?php
+                                if($questionTypes->num_rows() > 0){
+                                    foreach($questionTypes->result() as $row){
+                                        echo "<option data-type='$row->val_id' value='".$row->r_k."'>".$row->val_dsc."</option>";
+                                        // echo "<option data-link='$row->link' value='".$row->r_k."'".($lecture->par_id == $row->r_k?'selected="selected"':'').">".$row->val_dsc."</option>";
+                                    }
+                                }
+                                ?>
+                            </select>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-12">
                             <label>Content</label>
                             <span class="error text-danger"></span>
-                            <div class="summernote" id="content">
-                                <?php echo isset($lecture->content) ? $lecture->content : '' ?>
-                            </div>
+                            <div class="summernote" id="content"></div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-dark"><?php echo $lecture->r_k?"Update":"Create"; ?></button>
+                    <hr />
+                    <fieldset class="answer-panel MCSA MCMA d-none">
+                        <legend >
+                            <i class="fa fa-2x fa-plus-square-o pull-right text-primary cursor-pointer" data-ng-click="qdCtrl.addAnswer()"></i>
+                            Add Answer
+                        </legend>
+                        <div class="row" data-ng-repeat="answer in qdCtrl.question.answers">
+                            <div class="col-sm-12" style="margin-top: 10px;">
+                                Option {{$index+1}}.) <br />Select as answer
+                                <label data-ng-if="qdCtrl.question.qstTp['val_id']=='MCMA'" class="switch-light switch-ios" style="width: 100px">
+                                    <input type="checkbox" data-ng-model="answer.exm_qst_vld" />
+                                    <span><span>Wrong</span><span>Correct</span><a></a></span>
+                                </label>
+                                <label data-ng-if="qdCtrl.question.qstTp['val_id']=='MCSA'" class="switch switch-sm">
+                                    <input type="radio" name="exm_qst_vld" ng-model="answer.exm_qst_vld" ng-checked="answer.exm_qst_vld" ng-change="qdCtrl.changeAnswer(answer)" ng-value="true" />
+                                    <span><i class="handle"></i></span>
+                                </label>
+                                <textarea ui-tinymce="qdCtrl.tinymceOptions" ng-model="answer.exm_qst_ans"></textarea>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="answer-panel MTC d-none">
+                        <legend >
+                            <i class="fa fa-2x fa-plus-square-o pull-right text-primary cursor-pointer" data-ng-click="qdCtrl.addAnswer()"></i>
+                            Add Match
+                        </legend>
+                        <div class="row" data-ng-repeat="answer in qdCtrl.question.answers">
+                            <div class="col-sm-12">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" data-ng-model="answer.exm_qst_ans" placeholder="Enter an Answer">
+                                    </div>
+                                    <div class="col-sm-1 text-center">=</div>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" data-ng-model="answer.exm_qst_vld" placeholder="Correct Match">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="answer-panel SA d-none">
+                        <legend >
+                            Answer in one or two words (comma separated for multiple possibilities.) Not case sensitive
+                        </legend>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" data-ng-model="qdCtrl.question.answers[0].exm_qst_ans" placeholder="Enter answer(s)">
+                            </div>
+                        </div>
+                    </fieldset>
+                    <button type="submit" class="btn btn-dark">Create</button>
                 </form>
             </div>
         </div>

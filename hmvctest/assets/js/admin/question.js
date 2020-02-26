@@ -1,8 +1,12 @@
 $(function () {
+    $( "#questionType").change(function() {
+        var qstTpToShow = $('option:selected', this).attr('data-type');
+        $("fieldset.answer-panel").removeClass("d-block").addClass("d-none")
+        $("fieldset."+qstTpToShow).removeClass("d-none").removeClass("d-block")
+    });
     $('form#lecture').on('submit', function (e) {
         e.preventDefault();
         content=$('.summernote').summernote('code');
-        // data=$(this).serialize()+'&course_name='+$('#course option:selected').attr('data-link')+'&'+{'content':content};
         unindexed_array=$(this).serializeArray();
         var data = {};
         $.map(unindexed_array, function(n, i){

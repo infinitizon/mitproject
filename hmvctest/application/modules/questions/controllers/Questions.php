@@ -5,7 +5,6 @@ class Questions extends MX_Controller {
 
 	public function index() 
 	{
-		echo 'Questions';exit;
 		if (!$this->session->userdata('logged_in')) redirect('admin/login');
 
 		$data['module'] = "questions";
@@ -14,15 +13,15 @@ class Questions extends MX_Controller {
 		$data['styles'] = [];
 		$data['scripts'] = [];
 		
-		// $this->load->model('Common');
-		// $this->Common->setTable('cms');
-		// $data['lectures'] = $this->Common->get_where(['is_course'=>2]) ;
+		$this->load->model('Common');
+		$this->Common->setTable('cms');
+		$data['lectures'] = $this->Common->get_where(['is_course'=>2]) ;
 		echo Modules::run("templates/admin", $data);
 	}
 	public function create($r_k=null) 
 	{
 		if (!$this->session->userdata('logged_in')) redirect('admin/login');
-		$data['module'] = "lectures";
+		$data['module'] = "questions";
 		$data['view_file'] = "create";  
 		$data['styles'] = [
 			assets_url()."/plugins/summernote/dist/summernote.css",
@@ -32,17 +31,17 @@ class Questions extends MX_Controller {
 			assets_url()."/plugins/summernote/dist/summernote.min.js",
 			assets_url()."/plugins/summernote/dist/summernote-init.js",
 			webroot_url()."/assets/vendor/fontawesome-iconpicker/3.0.0/dist/js/fontawesome-iconpicker.min.js",
-			assets_url()."/js/admin/lecture.js",
+			assets_url()."/js/admin/question.js",
 		];
 		$this->load->model('Common');
 		$this->Common->setTable('cms');
 		$fields = array('r_k' => NULL,'menu_name' => "",'link' => "",'icon' => "",'content' => "",);
 		if(isset($r_k)) {
 			$data['lecture'] = $this->Common->get_where(['r_k'=>$r_k])->result()[0] ;
-			$data['title'] = "Edit Lecture";
+			$data['title'] = "Edit Question";
 		} else {
 			$data['lecture'] = (object)$fields;
-			$data['title'] = "Create Lecture";
+			$data['title'] = "Create Question";
 		}
 		if($this->input->post()){
 			$this->load->library('form_validation');
