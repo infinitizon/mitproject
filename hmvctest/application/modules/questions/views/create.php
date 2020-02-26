@@ -44,10 +44,10 @@
                     <hr />
                     <fieldset class="answer-panel MCSA MCMA d-none">
                         <legend >
-                            <i class="fa fa-2x fa-plus-square-o pull-right text-primary cursor-pointer" data-ng-click="qdCtrl.addAnswer()"></i>
+                            <i class="far fa-2x fa-plus-square float-right text-primary cursor-pointer "></i>
                             Add Answer
                         </legend>
-                        <div class="row" data-ng-repeat="answer in qdCtrl.question.answers">
+                        <div class="row answer" data-ng-repeat="answer in qdCtrl.question.answers">
                             <div class="col-sm-12" style="margin-top: 10px;">
                                 Option {{$index+1}}.) <br />Select as answer
                                 <label data-ng-if="qdCtrl.question.qstTp['val_id']=='MCMA'" class="switch-light switch-ios" style="width: 100px">
@@ -58,7 +58,7 @@
                                     <input type="radio" name="exm_qst_vld" ng-model="answer.exm_qst_vld" ng-checked="answer.exm_qst_vld" ng-change="qdCtrl.changeAnswer(answer)" ng-value="true" />
                                     <span><i class="handle"></i></span>
                                 </label>
-                                <textarea ui-tinymce="qdCtrl.tinymceOptions" ng-model="answer.exm_qst_ans"></textarea>
+                                <div class="summernote" id="content"></div>
                             </div>
                         </div>
                     </fieldset>

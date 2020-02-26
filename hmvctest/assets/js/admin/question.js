@@ -2,8 +2,12 @@ $(function () {
     $( "#questionType").change(function() {
         var qstTpToShow = $('option:selected', this).attr('data-type');
         $("fieldset.answer-panel").removeClass("d-block").addClass("d-none")
-        $("fieldset."+qstTpToShow).removeClass("d-none").removeClass("d-block")
+        $("fieldset."+qstTpToShow).removeClass("d-none").removeClass("d-block");
     });
+    $('i.fa-plus-square')
+            .click(function() {
+                $(this).parents("fieldset").css({"color": "red", "border": "2px solid red"});
+            });;
     $('form#lecture').on('submit', function (e) {
         e.preventDefault();
         content=$('.summernote').summernote('code');
