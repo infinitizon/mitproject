@@ -26,6 +26,7 @@ class Questions extends MX_Controller {
 		$data['styles'] = [
 			assets_url()."/plugins/summernote/dist/summernote.css",
 			webroot_url()."/assets/vendor/fontawesome-iconpicker/3.0.0/dist/css/fontawesome-iconpicker.min.css",
+			webroot_url()."/assets/css/toggle-switch.css",
 		];
 		$data['scripts'] = [
 			assets_url()."/plugins/summernote/dist/summernote.min.js",

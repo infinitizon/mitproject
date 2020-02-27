@@ -47,14 +47,14 @@
                             <i class="far fa-2x fa-plus-square float-right text-primary cursor-pointer "></i>
                             Add Answer
                         </legend>
-                        <div class="row answer" data-ng-repeat="answer in qdCtrl.question.answers">
+                        <div class="row d-none answer" data-ng-repeat="answer in qdCtrl.question.answers">
                             <div class="col-sm-12" style="margin-top: 10px;">
-                                Option {{$index+1}}.) <br />Select as answer
-                                <label data-ng-if="qdCtrl.question.qstTp['val_id']=='MCMA'" class="switch-light switch-ios" style="width: 100px">
+                                Option <span class="length"></span>.) <br />Select as answer
+                                <label class="switch-light switch-ios MCMA" style="width: 100px">
                                     <input type="checkbox" data-ng-model="answer.exm_qst_vld" />
                                     <span><span>Wrong</span><span>Correct</span><a></a></span>
                                 </label>
-                                <label data-ng-if="qdCtrl.question.qstTp['val_id']=='MCSA'" class="switch switch-sm">
+                                <label class="switch switch-sm MCSA">
                                     <input type="radio" name="exm_qst_vld" ng-model="answer.exm_qst_vld" ng-checked="answer.exm_qst_vld" ng-change="qdCtrl.changeAnswer(answer)" ng-value="true" />
                                     <span><i class="handle"></i></span>
                                 </label>

@@ -5,9 +5,16 @@ $(function () {
         $("fieldset."+qstTpToShow).removeClass("d-none").removeClass("d-block");
     });
     $('i.fa-plus-square')
-            .click(function() {
-                $(this).parents("fieldset").css({"color": "red", "border": "2px solid red"});
-            });;
+        .click(function() {
+            if( $(this).parent().siblings("div.answer").last().hasClass("d-none")) {
+                $(this).parent().siblings("div.answer").removeClass("d-none").removeClass("d-block");
+
+                $(this).parent().siblings("div.answer").find("")
+            } else {
+                $(this).parent().siblings("div.answer").last().clone().insertAfter($(this).parent().siblings("div.answer").last())
+            }
+            $(this).parent().siblings("div.answer").find("span.length").html($(this).parent().siblings("div.answer").length)
+        });
     $('form#lecture').on('submit', function (e) {
         e.preventDefault();
         content=$('.summernote').summernote('code');
