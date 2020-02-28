@@ -10,6 +10,7 @@ class Test extends MX_Controller {
 		
 		$this->load->model('tests');		
 		$data['content'] = $this->tests->get_home_content($this->uri->uri_string);
+		$data['pageTitle'] = $data['content']->message->menu_name;
 		
 		echo Modules::run("templates/general", $data);
 	}

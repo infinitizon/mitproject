@@ -10,7 +10,6 @@
                 echo $content->message->content; 
             }
             ?>
-            inside test->index.php
         </div>
     </div>
 </div>

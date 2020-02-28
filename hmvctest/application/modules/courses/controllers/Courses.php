@@ -8,7 +8,7 @@ class Courses extends MX_Controller {
 
 		$data['module'] = "courses";
 		$data['view_file'] = "home"; 
-		$data['title'] = "Create Courses";
+		$data['pageTitle'] = "Create Courses";
 		$data['styles'] = [];
 		$data['scripts'] = [];
 		
@@ -21,7 +21,7 @@ class Courses extends MX_Controller {
 		if (!$this->session->userdata('logged_in')) redirect('admin/login');
 		$data['module'] = "courses";
 		$data['view_file'] = "create"; 
-		$data['title'] = "Create Courses"; 
+		$data['pageTitle'] = "Create Courses"; 
 		$data['styles'] = [
 			assets_url()."/plugins/summernote/dist/summernote.css",
 			webroot_url()."/assets/vendor/fontawesome-iconpicker/3.0.0/dist/css/fontawesome-iconpicker.min.css",

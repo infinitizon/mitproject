@@ -14,8 +14,6 @@
                     $this->db->select('l.r_k, l.val_id, l.val_dsc')->from('t_wb_lov l');
                     $this->db->where("l.def_id LIKE '%QST-TP%'");
                     $questionTypes = $this->db->get();
-                    // $questionTypes = $this->db->last_query();
-                    // echo $questionTypes;
                     // echo isset($lecture->r_k)? "<input type='hidden' name='r_k' value='$lecture->r_k' />":'';
                 ?>
                     <div class="form-row">
@@ -49,12 +47,12 @@
                         </legend>
                         <div class="row d-none answer" data-ng-repeat="answer in qdCtrl.question.answers">
                             <div class="col-sm-12" style="margin-top: 10px;">
-                                Option <span class="length"></span>.) <br />Select as answer
-                                <label class="switch-light switch-ios MCMA" style="width: 100px">
+                                Option <span class="length">1</span>.) <br />Select as answer
+                                <label class="switch-light switch-ios d-none MCMA" style="width: 100px">
                                     <input type="checkbox" data-ng-model="answer.exm_qst_vld" />
                                     <span><span>Wrong</span><span>Correct</span><a></a></span>
                                 </label>
-                                <label class="switch switch-sm MCSA">
+                                <label class="switch switch-sm d-none MCSA">
                                     <input type="radio" name="exm_qst_vld" ng-model="answer.exm_qst_vld" ng-checked="answer.exm_qst_vld" ng-change="qdCtrl.changeAnswer(answer)" ng-value="true" />
                                     <span><i class="handle"></i></span>
                                 </label>

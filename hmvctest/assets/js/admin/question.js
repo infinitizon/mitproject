@@ -1,26 +1,31 @@
 $(function () {
     $( "#questionType").change(function() {
         var qstTpToShow = $('option:selected', this).attr('data-type');
-        $("fieldset.answer-panel").removeClass("d-block").addClass("d-none")
-        $("fieldset."+qstTpToShow).removeClass("d-none").removeClass("d-block");
+        $("fieldset.answer-panel."+qstTpToShow).removeClass("d-block").addClass("d-none")
+        $("fieldset."+qstTpToShow).removeClass("d-none").removeClass("d-block")
+            .find("label."+qstTpToShow).removeClass("d-none").removeClass("d-block");
+        if ($(this).val() == "") {
+            $( "div.answer:first" ).removeClass("d-block").addClass("d-none");
+            $( "div.answer:not(:first)" ).each(function(){ $(this).remove(); });
+        }
     });
     $('i.fa-plus-square')
         .click(function() {
-            if( $(this).parent().siblings("div.answer").last().hasClass("d-none")) {
-                $(this).parent().siblings("div.answer").removeClass("d-none").removeClass("d-block");
-
-                $(this).parent().siblings("div.answer").find("")
+            $selectedOpt = $('#questionType option:selected', this).attr('data-type');
+            $answers = $(this).parent().siblings("div.answer");
+            var $count = $answers.length + 1;
+            if( $answers.last().hasClass("d-none")) {
+                $answers.removeClass("d-none").removeClass("d-block");
             } else {
-                $(this).parent().siblings("div.answer").last().clone().insertAfter($(this).parent().siblings("div.answer").last())
+                $answers.last().clone().insertAfter($answers.last()).find("span.length").html($count);
             }
-            $(this).parent().siblings("div.answer").find("span.length").html($(this).parent().siblings("div.answer").length)
         });
     $('form#lecture').on('submit', function (e) {
         e.preventDefault();
         content=$('.summernote').summernote('code');
         unindexed_array=$(this).serializeArray();
         var data = {};
-        $.map(unindexed_array, function(n, i){
+        $.map(unindexed_array, function(n){
             data[n['name']] = n['value'];
         });
         data['course_name'] = $('#course option:selected').attr('data-link');

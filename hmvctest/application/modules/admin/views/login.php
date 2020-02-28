@@ -5,7 +5,9 @@
                     <div class="form-input-content">
                         <div class="card login-form mb-0">
                             <div class="card-body pt-5">
-                                <a class="text-center" href="index.html"> <h4>Chapel </h4></a>
+                                <a class="text-center" href="index.html">
+                                    <img src="<?php echo webroot_url(); ?>/assets/images/chd-logo-3.png" class="rounded mx-auto d-block" width="70%">
+                                </a>
         
                                 <?php
                     if (isset($result)) {

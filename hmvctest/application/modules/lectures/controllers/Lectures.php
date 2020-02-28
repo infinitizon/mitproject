@@ -9,7 +9,7 @@ class Lectures extends MX_Controller {
 
 		$data['module'] = "lectures";
 		$data['view_file'] = "home"; 
-		$data['title'] = "Lectures";
+		$data['pageTitle'] = "Lectures";
 		$data['styles'] = [];
 		$data['scripts'] = [];
 		
@@ -38,10 +38,10 @@ class Lectures extends MX_Controller {
 		$fields = array('r_k' => NULL,'menu_name' => "",'link' => "",'icon' => "",'content' => "",);
 		if(isset($r_k)) {
 			$data['lecture'] = $this->Common->get_where(['r_k'=>$r_k])->result()[0] ;
-			$data['title'] = "Edit Lecture";
+			$data['pageTitle'] = "Edit Lecture";
 		} else {
 			$data['lecture'] = (object)$fields;
-			$data['title'] = "Create Lecture";
+			$data['pageTitle'] = "Create Lecture";
 		}
 		if($this->input->post()){
 			$this->load->library('form_validation');

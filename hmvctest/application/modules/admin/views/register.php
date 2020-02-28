@@ -6,8 +6,9 @@
                     <div class="form-input-content">
                         <div class="card login-form mb-0">
                             <div class="card-body pt-5">
-                                
-                                    <a class="text-center" href="index.html"> <h4>Rosella</h4></a>
+                                <a class="text-center" href="index.html">
+                                    <img src="<?php echo webroot_url(); ?>/assets/images/chd-logo-3.png" width="20%">
+                                </a>
         
                                 <form class="mt-5 mb-5 login-input">
                                     <div class="form-group">

@@ -8,9 +8,7 @@ class Profile extends MX_Controller {
 		$data['view_file'] = "index"; 
 		
 		$this->load->model('test/tests');
-		$data['sidebar'] = $this->tests->multi_menu();
-		$data['content'] = $this->tests->get_home_content();
-		$data['title'] = "Test"; 
+		$data['pageTitle'] = "My Profile"; 
 		echo Modules::run("templates/general", $data);
 	}
 }

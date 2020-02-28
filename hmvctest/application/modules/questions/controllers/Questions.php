@@ -9,10 +9,10 @@ class Questions extends MX_Controller {
 
 		$data['module'] = "questions";
 		$data['view_file'] = "home"; 
-		$data['title'] = "Questions";
+		$data['pageTitle'] = "Questions";
 		$data['styles'] = [];
 		$data['scripts'] = [];
-		
+	
 		$this->load->model('Common');
 		$this->Common->setTable('cms');
 		$data['lectures'] = $this->Common->get_where(['is_course'=>2]) ;
@@ -39,10 +39,10 @@ class Questions extends MX_Controller {
 		$fields = array('r_k' => NULL,'menu_name' => "",'link' => "",'icon' => "",'content' => "",);
 		if(isset($r_k)) {
 			$data['lecture'] = $this->Common->get_where(['r_k'=>$r_k])->result()[0] ;
-			$data['title'] = "Edit Question";
+			$data['pageTitle'] = "Edit Question";
 		} else {
 			$data['lecture'] = (object)$fields;
-			$data['title'] = "Create Question";
+			$data['pageTitle'] = "Create Question";
 		}
 		if($this->input->post()){
 			$this->load->library('form_validation');

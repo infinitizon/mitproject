@@ -5,9 +5,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title><?php echo $title; ?></title>
+    <title><?php echo $pageTitle; ?></title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    <link rel="icon" sizes="16x16" href="<?php echo webroot_url(); ?>/assets/favicon/favicon.ico">
 
     <link rel="stylesheet" href="<?php echo webroot_url(); ?>/assets/vendor/codemirror-5.49.2/lib/codemirror.css">
     <link rel="stylesheet" href="<?php echo webroot_url(); ?>/assets/vendor/prettify/src/prettify.css">

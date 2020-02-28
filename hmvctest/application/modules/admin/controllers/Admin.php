@@ -10,7 +10,7 @@ class Admin extends MX_Controller {
 		$data['sidebar'] = $this->tests->multi_menu();
 		$data['module'] = "admin";
 		$data['view_file'] = "home"; 
-		$data['title'] = "login";
+		$data['pageTitle'] = "login";
 		echo Modules::run("templates/admin", $data);
 	}
 	public function login($result=array()) {
@@ -18,7 +18,7 @@ class Admin extends MX_Controller {
 			$data['result'] = $result;
 		$data['module'] = "admin";
 		$data['view_file'] = "login"; 
-		$data['title'] = "Login"; 
+		$data['pageTitle'] = "Login"; 
 		echo Modules::run("templates/auth", $data);
 	}
 	public function logout($result=array()) {
@@ -59,7 +59,7 @@ class Admin extends MX_Controller {
 			$data['result'] = $result;
 		$data['module'] = "admin";
 		$data['view_file'] = "register"; 
-		$data['title'] = "Register"; 
+		$data['pageTitle'] = "Register"; 
 		echo Modules::run("templates/auth", $data);
 	}
 	public function p_register() {
@@ -98,7 +98,7 @@ class Admin extends MX_Controller {
 		$data['roles'] = $this->profile->_findAllRoles();
 		$user = $this->profile->_findUserById($this->session->userdata('logged_in')->usr_id);
 		$data['user'] = $user['success']?(object)$user['message']:'';
-		$data['title'] = "Profile";
+		$data['pageTitle'] = "Profile";
 		$data['module'] = "profile";
 		$data['view_file'] = "profile";
 		echo Modules::run("templates/admin", $data);
@@ -164,7 +164,7 @@ class Admin extends MX_Controller {
 		}
 		$this->load->model('profile');
 		$data['roles'] = $this->profile->_findAllRoles();
-		$data['title'] = "Users";
+		$data['pageTitle'] = "Users";
 		$data['module'] = "user";
 		$data['view_file'] = "index";
 		echo Modules::run("templates/admin", $data);
