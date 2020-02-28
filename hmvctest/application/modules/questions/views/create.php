@@ -18,7 +18,7 @@
                 ?>
                     <div class="form-row">
                         <div class="form-group col-md-4">
-                            <label>Choose Question</label>
+                            <label>Choose Question Type</label>
                             <select  class="form-control" id="questionType" name='questionType'>
                                 <option value=''>Select Question Type</option>";
                                 <?php
@@ -34,9 +34,9 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-12">
-                            <label>Content</label>
+                            <label>Question</label>
                             <span class="error text-danger"></span>
-                            <div class="summernote" id="content"></div>
+                            <div class="summernote question" id="content"></div>
                         </div>
                     </div>
                     <hr />
@@ -45,7 +45,7 @@
                             <i class="far fa-2x fa-plus-square float-right text-primary cursor-pointer "></i>
                             Add Answer
                         </legend>
-                        <div class="row d-none answer" data-ng-repeat="answer in qdCtrl.question.answers">
+                        <div class="row d-none answer">
                             <div class="col-sm-12" style="margin-top: 10px;">
                                 Option <span class="length">1</span>.) <br />Select as answer
                                 <label class="switch-light switch-ios d-none MCMA" style="width: 100px">
@@ -61,11 +61,11 @@
                         </div>
                     </fieldset>
                     <fieldset class="answer-panel MTC d-none">
-                        <legend >
-                            <i class="fa fa-2x fa-plus-square-o pull-right text-primary cursor-pointer" data-ng-click="qdCtrl.addAnswer()"></i>
+                        <legend>
+                            <i class="far fa-2x fa-plus-square float-right text-primary cursor-pointer "></i>
                             Add Match
                         </legend>
-                        <div class="row" data-ng-repeat="answer in qdCtrl.question.answers">
+                        <div class="row d-none answer">
                             <div class="col-sm-12">
                                 <div class="row">
                                     <div class="col-sm-3">
@@ -83,9 +83,9 @@
                         <legend >
                             Answer in one or two words (comma separated for multiple possibilities.) Not case sensitive
                         </legend>
-                        <div class="row">
+                        <div class="row answer">
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" data-ng-model="qdCtrl.question.answers[0].exm_qst_ans" placeholder="Enter answer(s)">
+                                <input type="text" class="form-control" placeholder="Enter answer(s). E.g: fox, Dog">
                             </div>
                         </div>
                     </fieldset>

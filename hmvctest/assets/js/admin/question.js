@@ -1,13 +1,12 @@
 $(function () {
     $( "#questionType").change(function() {
+        $("fieldset."+qstTpToShow).find( "div.answer:first" ).removeClass("d-block").addClass("d-none")
+            .find("label:not(."+qstTpToShow+")").removeClass("d-block").addClass("d-none");
+        $("fieldset."+qstTpToShow).find( "div.answer:not(:first)" ).each(function(){ $(this).remove(); });
         var qstTpToShow = $('option:selected', this).attr('data-type');
-        $("fieldset.answer-panel."+qstTpToShow).removeClass("d-block").addClass("d-none")
+        $("fieldset.answer-panel").removeClass("d-block").addClass("d-none")
         $("fieldset."+qstTpToShow).removeClass("d-none").removeClass("d-block")
             .find("label."+qstTpToShow).removeClass("d-none").removeClass("d-block");
-        if ($(this).val() == "") {
-            $( "div.answer:first" ).removeClass("d-block").addClass("d-none");
-            $( "div.answer:not(:first)" ).each(function(){ $(this).remove(); });
-        }
     });
     $('i.fa-plus-square')
         .click(function() {
@@ -22,15 +21,20 @@ $(function () {
         });
     $('form#lecture').on('submit', function (e) {
         e.preventDefault();
-        content=$('.summernote').summernote('code');
         unindexed_array=$(this).serializeArray();
         var data = {};
         $.map(unindexed_array, function(n){
             data[n['name']] = n['value'];
         });
-        data['course_name'] = $('#course option:selected').attr('data-link');
-        data['content'] = content;
-        // console.log(data);return;
+        
+        $question=$('.question').summernote('code');
+        data['selectedOpt'] = $('#questionType option:selected').attr('data-type');
+        data['content'] = $question;
+        $("fieldset."+data['selectedOpt']).find("div.answer").each(function(key, elem){
+            console.log(elem)
+        });
+
+        console.log(data);return;
         $.ajax({
             type: "POST",
             url: config['webroot']['endpoint']+"hmvctest/lectures/create",
