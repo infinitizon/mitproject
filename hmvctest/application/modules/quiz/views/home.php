@@ -4,8 +4,8 @@
             <div class="card-body">
                 <div class="card-header">
                     <h4 class="card-title">
-                        <?php echo anchor('questions/create','<i class="far fa-plus-square fa-2x float-right text-primary"></i>'); ?>
-                        Question Bank 
+                        <?php echo anchor('quiz/create','<i class="far fa-plus-square fa-2x float-right text-primary"></i>'); ?>
+                        Quiz 
                     </h4>
                 </div>
                 <div class="basic-list-group">
@@ -24,7 +24,7 @@
                             }
                         } else {
                         ?>
-                        <h3 class="text-center">No questions have been entered yet</h3>
+                            <h3 class="text-center">No quizes created yet</h3>
                         <?php
                         }
                         ?>

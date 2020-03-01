@@ -1,14 +1,8 @@
-<div class="row">
-    <div class="col-xl-12">
-        <div class="card">
-            <div class="card-body">
-                <div class="card-header">
-                    <h4 class="card-title">
-                        <?php echo anchor('questions/create','<i class="far fa-plus-square fa-2x float-right text-primary"></i>'); ?>
-                        Question Bank 
-                    </h4>
-                </div>
-                <div class="basic-list-group">
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Add question to quiz: <?php echo $quiz->result()[0]->quiz_name ?> </h4>
+            <div class="basic-list-group">
                     <div class="list-group">
                         <?php
                         if ($questions->num_rows() > 0) {
@@ -30,7 +24,6 @@
                         ?>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
 </div>

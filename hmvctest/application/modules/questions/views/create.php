@@ -1,15 +1,17 @@
 <div class="col-lg-12">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Create/Edit lecture</h4>
+            <h4 class="card-title">Create Question</h4>
             <div class="row">
                 <div class="alert alert-dismissible hide fade in ">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    <strong></strong><span class="message"></span>
+                    <strong></strong><span class="message">
+                    <?php echo validation_errors(); ?>
+                    </span>
                 </div>
             </div>
             <div class="basic-form">
-                <form name="lecture" id="lecture">
+                <form name="preQuestion" id="preQuestion" method="post">
                 <?php  
                     $this->db->select('l.r_k, l.val_id, l.val_dsc')->from('t_wb_lov l');
                     $this->db->where("l.def_id LIKE '%QST-TP%'");
@@ -17,79 +19,29 @@
                     // echo isset($lecture->r_k)? "<input type='hidden' name='r_k' value='$lecture->r_k' />":'';
                 ?>
                     <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <label>Choose Question Type</label>
+                        <div class="form-group col-md-8">
+                            <label>Choose Question Type <span class="text-danger"><?php echo form_error('questionType') ?></span></label>
                             <select  class="form-control" id="questionType" name='questionType'>
-                                <option value=''>Select Question Type</option>";
                                 <?php
                                 if($questionTypes->num_rows() > 0){
                                     foreach($questionTypes->result() as $row){
                                         echo "<option data-type='$row->val_id' value='".$row->r_k."'>".$row->val_dsc."</option>";
-                                        // echo "<option data-link='$row->link' value='".$row->r_k."'".($lecture->par_id == $row->r_k?'selected="selected"':'').">".$row->val_dsc."</option>";
                                     }
                                 }
                                 ?>
                             </select>
+                            <input type='hidden' name='optionType' id="optionType" />
                         </div>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-12">
-                            <label>Question</label>
-                            <span class="error text-danger"></span>
-                            <div class="summernote question" id="content"></div>
+                    <div class="form-row noOfOptions">
+                        <div class="form-group col-md-8">
+                            <label>Number of Options <span class="text-danger"><?php echo form_error('noOfOptions') ?></span></label>
+                            <input type="text" class="form-control" placeholder="Enter the number of options "
+                                name="noOfOptions" id="noOfOptions" 
+                                value="<?php echo array_key_exists("noOfOptions",$_POST)?$this->input->post('noOfOptions'):4; ?>" />
                         </div>
                     </div>
-                    <hr />
-                    <fieldset class="answer-panel MCSA MCMA d-none">
-                        <legend >
-                            <i class="far fa-2x fa-plus-square float-right text-primary cursor-pointer "></i>
-                            Add Answer
-                        </legend>
-                        <div class="row d-none answer">
-                            <div class="col-sm-12" style="margin-top: 10px;">
-                                Option <span class="length">1</span>.) <br />Select as answer
-                                <label class="switch-light switch-ios d-none MCMA" style="width: 100px">
-                                    <input type="checkbox" data-ng-model="answer.exm_qst_vld" />
-                                    <span><span>Wrong</span><span>Correct</span><a></a></span>
-                                </label>
-                                <label class="switch switch-sm d-none MCSA">
-                                    <input type="radio" name="exm_qst_vld" ng-model="answer.exm_qst_vld" ng-checked="answer.exm_qst_vld" ng-change="qdCtrl.changeAnswer(answer)" ng-value="true" />
-                                    <span><i class="handle"></i></span>
-                                </label>
-                                <div class="summernote" id="content"></div>
-                            </div>
-                        </div>
-                    </fieldset>
-                    <fieldset class="answer-panel MTC d-none">
-                        <legend>
-                            <i class="far fa-2x fa-plus-square float-right text-primary cursor-pointer "></i>
-                            Add Match
-                        </legend>
-                        <div class="row d-none answer">
-                            <div class="col-sm-12">
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <input type="text" class="form-control" data-ng-model="answer.exm_qst_ans" placeholder="Enter an Answer">
-                                    </div>
-                                    <div class="col-sm-1 text-center">=</div>
-                                    <div class="col-sm-3">
-                                        <input type="text" class="form-control" data-ng-model="answer.exm_qst_vld" placeholder="Correct Match">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </fieldset>
-                    <fieldset class="answer-panel SA d-none">
-                        <legend >
-                            Answer in one or two words (comma separated for multiple possibilities.) Not case sensitive
-                        </legend>
-                        <div class="row answer">
-                            <div class="col-sm-12">
-                                <input type="text" class="form-control" placeholder="Enter answer(s). E.g: fox, Dog">
-                            </div>
-                        </div>
-                    </fieldset>
-                    <button type="submit" class="btn btn-dark">Create</button>
+                    <button type="submit" class="btn btn-dark next">Next</button>
                 </form>
             </div>
         </div>

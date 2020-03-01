@@ -41,8 +41,6 @@ if(!$this->uri->segment(2)){
 }
         $query = $this->db->get();
         $row = $query->result();
-        // echo $this->db->last_query();
-        // var_dump($row);
         if ($query->num_rows() == 1) {
             $row = $query->result()[0];
             return (object) array("success"=>true, "message"=>$row);

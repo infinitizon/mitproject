@@ -16,9 +16,8 @@
         format: 'dddd DD MMMM YYYY - HH:mm'
     });
 
-    $('#min-date').bootstrapMaterialDatePicker({
-        format: 'DD/MM/YYYY HH:mm',
-        minDate: new Date()
+    $('.min-date').bootstrapMaterialDatePicker({
+        format: 'YYYY-MM-DD HH:mm:SS',
     });
     // Clock pickers
     $('#single-input').clockpicker({

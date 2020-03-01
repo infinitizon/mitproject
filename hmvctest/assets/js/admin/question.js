@@ -1,43 +1,52 @@
 $(function () {
     $( "#questionType").change(function() {
-        $("fieldset."+qstTpToShow).find( "div.answer:first" ).removeClass("d-block").addClass("d-none")
-            .find("label:not(."+qstTpToShow+")").removeClass("d-block").addClass("d-none");
-        $("fieldset."+qstTpToShow).find( "div.answer:not(:first)" ).each(function(){ $(this).remove(); });
-        var qstTpToShow = $('option:selected', this).attr('data-type');
-        $("fieldset.answer-panel").removeClass("d-block").addClass("d-none")
-        $("fieldset."+qstTpToShow).removeClass("d-none").removeClass("d-block")
-            .find("label."+qstTpToShow).removeClass("d-none").removeClass("d-block");
-    });
-    $('i.fa-plus-square')
-        .click(function() {
-            $selectedOpt = $('#questionType option:selected', this).attr('data-type');
-            $answers = $(this).parent().siblings("div.answer");
-            var $count = $answers.length + 1;
-            if( $answers.last().hasClass("d-none")) {
-                $answers.removeClass("d-none").removeClass("d-block");
-            } else {
-                $answers.last().clone().insertAfter($answers.last()).find("span.length").html($count);
-            }
-        });
-    $('form#lecture').on('submit', function (e) {
+        $optionType = $('option:selected', this).attr('data-type');
+        if($optionType=='SA' || $optionType=='LA'){
+            $("#noOfOptions").parents(".noOfOptions").addClass("d-none").removeClass("d-block")
+        } else {
+            $("#noOfOptions").parents(".noOfOptions").removeClass("d-none").addClass("d-block");
+            $("#optionType").val($optionType);
+        }
+    }).trigger('change');
+    // $( "#questionType").change(function() {
+    //     $("fieldset."+qstTpToShow).find( "div.answer:first" ).removeClass("d-block").addClass("d-none")
+    //         .find("label:not(."+qstTpToShow+")").removeClass("d-block").addClass("d-none");
+    //     $("fieldset."+qstTpToShow).find( "div.answer:not(:first)" ).each(function(){ $(this).remove(); });
+    //     var qstTpToShow = $('option:selected', this).attr('data-type');
+    //     $("fieldset.answer-panel").removeClass("d-block").addClass("d-none")
+    //     $("fieldset."+qstTpToShow).removeClass("d-none").removeClass("d-block")
+    //         .find("label."+qstTpToShow).removeClass("d-none").removeClass("d-block");
+    // });
+    // $('i.fa-plus-square')
+    //     .click(function() {
+    //         $selectedOpt = $('#questionType option:selected', this).attr('data-type');
+    //         $answers = $(this).parent().siblings("div.answer");
+    //         var $count = $answers.length + 1;
+    //         if( $answers.last().hasClass("d-none")) {
+    //             $answers.removeClass("d-none").removeClass("d-block");
+    //         } else {
+    //             $answers.last().clone(x).insertAfter($answers.last()).find("span.length").html($count);
+    //         }
+    //     });
+
+    $('form#question').on('submit', function (e) {
         e.preventDefault();
         unindexed_array=$(this).serializeArray();
         var data = {};
         $.map(unindexed_array, function(n){
             data[n['name']] = n['value'];
         });
-        
-        $question=$('.question').summernote('code');
-        data['selectedOpt'] = $('#questionType option:selected').attr('data-type');
-        data['content'] = $question;
-        $("fieldset."+data['selectedOpt']).find("div.answer").each(function(key, elem){
-            console.log(elem)
+        data['question'] = $('.question').summernote('code');
+        answer = []
+        $("fieldset."+$('input[name="optionType"]').val()).each(function(key, elem){
+            $noteAnswer = $(elem).find('.noteAnswer').summernote('code');
+            answer.push(
+                {'exm_qst_vld':($(elem).find('input[name="exm_qst_vld"]').is(':checked')?true:false), 'noteAnswer':$noteAnswer})
         });
-
-        console.log(data);return;
+        data['answers'] = answer
         $.ajax({
             type: "POST",
-            url: config['webroot']['endpoint']+"hmvctest/lectures/create",
+            url: config['webroot']['endpoint']+"hmvctest/questions/create",
             data: data,
             success: function(result){                        
                 try{        
