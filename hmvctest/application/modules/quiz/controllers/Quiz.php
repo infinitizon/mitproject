@@ -52,6 +52,13 @@ class Quiz extends MX_Controller {
 			, "max_attempts"=> "", "min_pass_pct"=> "", "correct_scr"=> "", "incorrect_scr"=> ""
 			, "allowed_ip"=> "", "view_ans_after"=> "", "description"=> ""];
 
+		$data['quiz'] = [];
+		$this->db->select('q.r_k,qq.r_k quiz_questions,q.question_type,l.val_id,l.val_dsc, q.question, q.answers, q.create_date')
+			->from('questions q')
+			->join('t_wb_lov l', 'q.question_type=l.r_k')
+			->join('quiz_questions qq', 'q.r_k=qq.questions_r_k')
+			->where('qq.quiz_r_k',$r_k); 
+		$data['quiz_questions'] = $this->db->get();
 		if(isset($r_k)) {
 			$data['pageTitle'] = "Edit Quiz";
 			$this->load->model('Common');
@@ -60,12 +67,6 @@ class Quiz extends MX_Controller {
 			if($quiz->num_rows() > 0){
 				$data['quiz'] = $quiz->result()[0];
 			}
-
-			$this->db->select('q.r_k,qq.r_k quiz_questions,q.question_type,l.val_id,l.val_dsc, q.question, q.answers, q.create_date')
-				->from('questions q')
-				->join('t_wb_lov l', 'q.question_type=l.r_k')
-				->join('quiz_questions qq', 'q.r_k=qq.questions_r_k AND qq.quiz_r_k='.$r_k, 'LEFT');
-			$data['quiz_questions'] = $this->db->get();
 		} else {
 			$data['pageTitle'] = "Create Quiz";
 		}
@@ -83,7 +84,11 @@ class Quiz extends MX_Controller {
 				$this->Common->setTable('quiz');
 				$this->Common->_insert_on_duplicate_update($_POST) ;
 				$insert_id = $this->db->insert_id();
-				$fields['r_k'] = $this->db->insert_id();
+				if(isset($_POST['r_k'])) {
+					$fields['r_k'] = $_POST['r_k'];
+				} else {
+					$fields['r_k'] = $this->db->insert_id();
+				}
 				$result = array('success'=>true,'message'=>$fields);
 			}else{
 				$fields = [

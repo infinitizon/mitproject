@@ -12,7 +12,6 @@ $(function () {
         data['view_ans_after'] = data['view_ans_after']=='on'?true:false;
         data['open_quiz'] = data['open_quiz']=='on'?true:false;
         data['description'] = $('.summernote').summernote('code');
-        // console.log(data); return;
         $.ajax({
             type: "POST",
             url: config['webroot']['endpoint']+"hmvctest/quiz/create",

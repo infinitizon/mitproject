@@ -1,12 +1,14 @@
 <div class="col-lg-12">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Create Question</h4>
+            <h4 class="card-title">
+                <?php echo $quiz?'Edit Quiz':'Create Quiz' ?>
+            </h4>
             <div class="row">
                 <div class="alert alert-dismissible hide fade in ">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                     <strong></strong><span class="message">
-                    <?php echo validation_errors(); ?>
+                        <?php echo validation_errors(); ?>
                     </span>
                 </div>
             </div>
