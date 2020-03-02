@@ -8,27 +8,6 @@ $(function () {
             $("#optionType").val($optionType);
         }
     }).trigger('change');
-    // $( "#questionType").change(function() {
-    //     $("fieldset."+qstTpToShow).find( "div.answer:first" ).removeClass("d-block").addClass("d-none")
-    //         .find("label:not(."+qstTpToShow+")").removeClass("d-block").addClass("d-none");
-    //     $("fieldset."+qstTpToShow).find( "div.answer:not(:first)" ).each(function(){ $(this).remove(); });
-    //     var qstTpToShow = $('option:selected', this).attr('data-type');
-    //     $("fieldset.answer-panel").removeClass("d-block").addClass("d-none")
-    //     $("fieldset."+qstTpToShow).removeClass("d-none").removeClass("d-block")
-    //         .find("label."+qstTpToShow).removeClass("d-none").removeClass("d-block");
-    // });
-    // $('i.fa-plus-square')
-    //     .click(function() {
-    //         $selectedOpt = $('#questionType option:selected', this).attr('data-type');
-    //         $answers = $(this).parent().siblings("div.answer");
-    //         var $count = $answers.length + 1;
-    //         if( $answers.last().hasClass("d-none")) {
-    //             $answers.removeClass("d-none").removeClass("d-block");
-    //         } else {
-    //             $answers.last().clone(x).insertAfter($answers.last()).find("span.length").html($count);
-    //         }
-    //     });
-
     $('form#question').on('submit', function (e) {
         e.preventDefault();
         unindexed_array=$(this).serializeArray();

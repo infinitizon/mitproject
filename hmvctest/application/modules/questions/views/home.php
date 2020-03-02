@@ -18,7 +18,7 @@
                                     <div class="d-flex w-100 justify-content-between">
                                         <h5 class="mb-1"><?php echo $question->question; ?></h5><small>created <?php echo $question->create_date; ?></small>
                                     </div>
-                                    <small>Click to edit.</small>
+                                    <small><?php echo $question->val_dsc; ?></small>
                                 </a>
                             <?php
                             }

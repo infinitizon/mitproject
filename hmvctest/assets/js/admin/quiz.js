@@ -1,4 +1,7 @@
 $(function () {
+    $('.changeOrder').on('click', function (e) {
+        
+    });
     $('form#quiz').on('submit', function (e) {
         e.preventDefault();
         unindexed_array=$(this).serializeArray();
@@ -6,6 +9,8 @@ $(function () {
         $.map(unindexed_array, function(n){
             data[n['name']] = n['value'];
         });
+        data['view_ans_after'] = data['view_ans_after']=='on'?true:false;
+        data['open_quiz'] = data['open_quiz']=='on'?true:false;
         data['description'] = $('.summernote').summernote('code');
         // console.log(data); return;
         $.ajax({

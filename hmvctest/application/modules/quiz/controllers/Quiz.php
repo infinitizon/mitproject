@@ -15,7 +15,7 @@ class Quiz extends MX_Controller {
 	
 		$this->load->model('Common');
 		$this->Common->setTable('quiz');
-		$data['questions'] = $this->Common->get_where(['users_r_k'=>$this->session->userdata('logged_in')->r_k]) ;
+		$data['quizes'] = $this->Common->get_where(['users_r_k'=>$this->session->userdata('logged_in')->r_k]) ;
 		echo Modules::run("templates/admin", $data);
 	}
 	public function create($r_k=null) 
@@ -45,17 +45,30 @@ class Quiz extends MX_Controller {
 			webroot_url()."/assets/vendor/fontawesome-iconpicker/3.0.0/dist/js/fontawesome-iconpicker.min.js",
 			assets_url()."/js/admin/quiz.js",
 		];
-		if(isset($r_k)) {
-			$data['pageTitle'] = "Edit Quiz";
-		} else {
-			$data['pageTitle'] = "Create Quiz";
-		}
+
 		$data['module'] = "quiz";
 		$data['view_file'] = "create"; 
 		$fields = ["quiz_name"=> "", "start_date"=> "", "end_date"=> "", "duration"=> ""
 			, "max_attempts"=> "", "min_pass_pct"=> "", "correct_scr"=> "", "incorrect_scr"=> ""
 			, "allowed_ip"=> "", "view_ans_after"=> "", "description"=> ""];
-			// var_dump($_POST);
+
+		if(isset($r_k)) {
+			$data['pageTitle'] = "Edit Quiz";
+			$this->load->model('Common');
+			$this->Common->setTable('quiz');
+			$quiz = $this->Common->get_where(['r_k'=>$r_k]);
+			if($quiz->num_rows() > 0){
+				$data['quiz'] = $quiz->result()[0];
+			}
+
+			$this->db->select('q.r_k,qq.r_k quiz_questions,q.question_type,l.val_id,l.val_dsc, q.question, q.answers, q.create_date')
+				->from('questions q')
+				->join('t_wb_lov l', 'q.question_type=l.r_k')
+				->join('quiz_questions qq', 'q.r_k=qq.questions_r_k AND qq.quiz_r_k='.$r_k, 'LEFT');
+			$data['quiz_questions'] = $this->db->get();
+		} else {
+			$data['pageTitle'] = "Create Quiz";
+		}
 		if($this->input->post()){
 			$this->load->library('form_validation');
 			$this->form_validation->set_rules('quiz_name','Quiz Name','required|trim');
@@ -64,6 +77,8 @@ class Quiz extends MX_Controller {
 			$this->form_validation->set_rules('min_pass_pct','Minimum Percentage','integer|is_natural|less_than[101]');
 			if($this->form_validation->run()) {
 				$data['view_file'] = "addQuestion";
+				$_POST['view_ans_after'] = $_POST['view_ans_after']=="true"?true:false;
+				$_POST['open_quiz'] = $_POST['open_quiz']=="true"?true:false;
 				$this->load->model('Common');
 				$this->Common->setTable('quiz');
 				$this->Common->_insert_on_duplicate_update($_POST) ;
@@ -95,66 +110,47 @@ class Quiz extends MX_Controller {
 		if (!$this->session->userdata('logged_in')) redirect('admin/login');
 		
 		$data['styles'] = [];
-		$data['scripts'] = [];
+		$data['scripts'] = [
+			assets_url()."/js/admin/addQuestion.js",
+		];
 		$data['pageTitle'] = "Add question to quiz";
 		$data['module'] = "quiz";
 		$data['view_file'] = "addQuestion";
 
 		$this->load->model('Common');
 		$this->Common->setTable('quiz');
-		$data['quiz'] = $this->Common->get_where(['r_k'=>$r_k]) ;
-		
-		$this->db->select('q.r_k,q.question_type,l.val_id, q.question, q.answers, q.create_date')
+		$quiz = $this->Common->get_where(['r_k'=>$r_k]);
+		$data['quiz'] = $quiz->result()[0];
+
+		$this->db->select('q.r_k,qq.r_k quiz_questions,q.question_type,l.val_id,l.val_dsc, q.question, q.answers, q.create_date')
 			->from('questions q')
-			->join('t_wb_lov l', 'q.question_type=l.r_k');
+			->join('t_wb_lov l', 'q.question_type=l.r_k')
+			->join('quiz_questions qq', 'q.r_k=qq.questions_r_k AND qq.quiz_r_k='.$r_k, 'LEFT');
 		$data['questions'] = $this->db->get();
 		echo Modules::run("templates/admin", $data);
 	}
-	public function edit($r_k=null) 
+	public function addToQuiz() 
 	{
 		if (!$this->session->userdata('logged_in')) redirect('admin/login');
-		$data['styles'] = [
-			assets_url()."/plugins/summernote/dist/summernote.css",
-			webroot_url()."/assets/vendor/fontawesome-iconpicker/3.0.0/dist/css/fontawesome-iconpicker.min.css",
-			webroot_url()."/assets/css/toggle-switch.css",
-		];
-		$data['scripts'] = [
-			assets_url()."/plugins/summernote/dist/summernote.min.js",
-			assets_url()."/plugins/summernote/dist/summernote-init.js",
-			webroot_url()."/assets/vendor/fontawesome-iconpicker/3.0.0/dist/js/fontawesome-iconpicker.min.js",
-			assets_url()."/js/admin/question.js",
-		];
-		$data['pageTitle'] = "Edit Question";
-		if(isset($r_k)) {
-			
-			$this->db->select('q.r_k,q.question_type,l.val_id, q.question, q.answers, q.create_date')
-				->from('questions q')
-				->join('t_wb_lov l', 'q.question_type=l.r_k')
-				->where("q.r_k",$r_k);
-			$question = $this->db->get();
-			if($question->num_rows() > 0){
-				$result = $question->result()[0];
-				$result->answers = json_decode($result->answers);
-				$_POST['questionType'] = $result->question_type;
-				$_POST['optionType'] = $result->val_id;
-				$_POST['noOfOptions'] = count($result->answers);
-				$data['result'] = $result;
-			}
-		} 
-		$data['module'] = "questions";
-		$data['view_file'] = "edit"; 
+		
+		$data['pageTitle'] = "Add question to quiz";
+		$data['module'] = "quiz";
+		$data['view_file'] = "addQuestion";
+
 		if($this->input->post()){
-			$this->load->library('form_validation');
-			$this->form_validation->set_rules('questionType','Question Type','required|trim');
-			$this->form_validation->set_rules('noOfOptions','Number of options','required|trim');
-			if($this->form_validation->run()) {
-				$data['view_file'] = "edit";
-				echo Modules::run("templates/admin", $data);
-			}else{
-				echo Modules::run("templates/admin", $data);
-			}
+			$this->load->model('Common');
+			$this->Common->setTable('quiz_questions');
+			$quiz = $this->Common->count_where(['quiz_r_k'=>$this->input->post('quiz_r_k')]);
+			$_POST['question_order'] = $quiz+1;
+
+			$this->load->model('Common');
+			$this->Common->setTable('quiz_questions');
+			$this->Common->_insert_on_duplicate_update($_POST) ;
+
+			$result = array('success'=>true,'message'=>"Added");
 		} else {
-			echo Modules::run("templates/admin", $data);
+			$result = array('success'=>false,'message'=>"You must have landed here mistakenly");
 		}
+		echo json_encode($result);
 	}
 }

@@ -13,9 +13,11 @@ class Questions extends MX_Controller {
 		$data['styles'] = [];
 		$data['scripts'] = [];
 	
-		$this->load->model('Common');
-		$this->Common->setTable('questions');
-		$data['questions'] = $this->Common->get_where(['users_r_k'=>$this->session->userdata('logged_in')->r_k]) ;
+		$this->db->select('q.r_k,q.question_type,l.val_id,l.val_dsc, q.question, q.answers, q.create_date')
+				->from('questions q')
+				->join('t_wb_lov l', 'q.question_type=l.r_k')
+				->where("q.users_r_k",$this->session->userdata('logged_in')->r_k);
+		$data['questions'] = $this->db->get();
 		echo Modules::run("templates/admin", $data);
 	}
 	public function create($r_k=null) 
