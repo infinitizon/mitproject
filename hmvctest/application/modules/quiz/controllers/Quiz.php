@@ -15,7 +15,12 @@ class Quiz extends MX_Controller {
 	
 		$this->load->model('Common');
 		$this->Common->setTable('quiz');
-		$data['quizes'] = $this->Common->get_where(['users_r_k'=>$this->session->userdata('logged_in')->r_k]) ;
+		$this->db->select('q.*,COUNT(qq.r_k) as total_questions')
+			->from('quiz q')
+			->join('quiz_questions qq', 'q.r_k=qq.quiz_r_k', 'LEFT')
+			->group_by('q.r_k')
+			->where('q.users_r_k', $this->session->userdata('logged_in')->r_k) ;
+		$data['quizes'] = $this->db->get();
 		echo Modules::run("templates/admin", $data);
 	}
 	public function create($r_k=null) 
@@ -29,6 +34,7 @@ class Quiz extends MX_Controller {
 			assets_url()."/plugins/bootstrap-datepicker/bootstrap-datepicker.min.css",
 			assets_url()."/plugins/timepicker/bootstrap-timepicker.min.css",
 			assets_url()."/plugins/bootstrap-daterangepicker/daterangepicker.css",
+			assets_url()."/plugins/sweetalert/css/sweetalert.css",
 			webroot_url()."/assets/vendor/fontawesome-iconpicker/3.0.0/dist/css/fontawesome-iconpicker.min.css",
 			webroot_url()."/assets/css/toggle-switch.css",
 		];
@@ -41,6 +47,7 @@ class Quiz extends MX_Controller {
 			assets_url()."/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js",
 			assets_url()."/plugins/timepicker/bootstrap-timepicker.min.js",
 			assets_url()."/plugins/bootstrap-daterangepicker/daterangepicker.js",
+			assets_url()."/plugins/sweetalert/js/sweetalert.min.js",
 			assets_url()."/js/plugins-init/form-pickers-init.js",
 			webroot_url()."/assets/vendor/fontawesome-iconpicker/3.0.0/dist/js/fontawesome-iconpicker.min.js",
 			assets_url()."/js/admin/quiz.js",
@@ -153,6 +160,20 @@ class Quiz extends MX_Controller {
 			$this->Common->_insert_on_duplicate_update($_POST) ;
 
 			$result = array('success'=>true,'message'=>"Added");
+		} else {
+			$result = array('success'=>false,'message'=>"You must have landed here mistakenly");
+		}
+		echo json_encode($result);
+	}
+
+	public function removeQuestion() {
+		if (!$this->session->userdata('logged_in')) redirect('admin/login');
+
+		if($this->input->post()){
+			$this->load->model('Common');
+			$this->Common->setTable('quiz_questions');
+			$this->Common->_delete(['r_k'=>$this->input->post('r_k')]);
+			$result = array('success'=>true,'message'=>"Question deleted successfully");
 		} else {
 			$result = array('success'=>false,'message'=>"You must have landed here mistakenly");
 		}

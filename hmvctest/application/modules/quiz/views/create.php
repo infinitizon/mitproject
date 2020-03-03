@@ -117,8 +117,7 @@
                                                 <td>
                                                     <?php echo $key!=0? '<i class="fa fa-2x cursor-pointer changeOrder fa-arrow-up text-green"></i>' : ''; ?> &nbsp;
                                                     <?php echo $key!=$quiz_questions->num_rows()-1? '<i class="fa fa-2x cursor-pointer changeOrder fa-arrow-down text-warning"></i>' : ''; ?>
-                                                    <!-- <i class="fa fa-2x cursor-pointer fa-arrow-up text-green" data-ng-if="question.r_n !== '1'" data-ng-click="qCtrl.changePosition('-1',question,quiz,$parent.$parent.$index)"></i> &nbsp;
-                                                    <i class="fa fa-2x cursor-pointer fa-arrow-down text-warning" data-ng-if="question.r_n !== quiz.total_count" data-ng-click="qCtrl.changePosition('1',question,quiz,$parent.$parent.$index)"></i> -->
+                                                    <i class="fa fa-2x cursor-pointer fa-minus-circle text-danger" data-r_k="<?php echo $question->quiz_questions; ?>"></i> &nbsp;
                                                 </td>
                                             </tr>
                                             <?php
