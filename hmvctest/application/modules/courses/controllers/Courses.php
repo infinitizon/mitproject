@@ -14,7 +14,7 @@ class Courses extends MX_Controller {
 		
 		$this->load->model('Common');
 		$this->Common->setTable('cms');
-		$data['courses'] = $this->Common->get_where(['is_course'=>1]) ;
+		$data['courses'] = $this->Common->get_where(['record_type'=>20200139]) ;
 		echo Modules::run("templates/admin", $data);
 	}
 	public function create($r_k=null) {
@@ -46,7 +46,7 @@ class Courses extends MX_Controller {
 			if($this->form_validation->run()) {
 				$_POST['par_id'] = 0;
 				$_POST['users_r_k'] = $this->session->userdata('logged_in')->r_k;
-				$_POST['is_course'] = 1;
+				$_POST['record_type'] = 20200139;
 				$this->Common->_insert_on_duplicate_update($_POST) ;
 				$fields = array('menu_name' => "",'link' => "",'icon' => "",'content' => "",);
 				$result = array('success'=>true,'message'=>'Details submitted successfully', 'fields'=>$fields);

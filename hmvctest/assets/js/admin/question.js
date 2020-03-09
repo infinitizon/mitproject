@@ -18,9 +18,14 @@ $(function () {
         data['question'] = $('.question').summernote('code');
         answer = []
         $("fieldset."+$('input[name="optionType"]').val()).each(function(key, elem){
-            $noteAnswer = $(elem).find('.noteAnswer').summernote('code');
-            answer.push(
-                {'exm_qst_vld':($(elem).find('input[name="exm_qst_vld"]').is(':checked')?true:false), 'noteAnswer':$noteAnswer})
+            if($('input[name="optionType"]').val() == 'MTC'){
+                answer.push(
+                    {'exm_qst_ans':$(elem).find('input[name="exm_qst_ans"]').val(), 'exm_qst_vld':$(elem).find('input[name="exm_qst_vld"]').val()})
+            } else if($('input[name="optionType"]').val() == 'MCMA' || $('input[name="optionType"]').val() == 'MCSA') {
+                $noteAnswer = $(elem).find('.noteAnswer').summernote('code');
+                answer.push(
+                    {'exm_qst_vld':($(elem).find('input[name="exm_qst_vld"]').is(':checked')?true:false), 'exm_qst_ans':$noteAnswer})
+            }
         });
         data['answers'] = answer
         $.ajax({

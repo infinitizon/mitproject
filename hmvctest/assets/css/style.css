@@ -14698,6 +14698,24 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
     background-color: #1b2b42; }
     [data-theme-version="dark"] .footer .copyright p {
       color: #fff; }
+
+/* My additions */
 .cursor-pointer{cursor: pointer;}
+.list-group-item:hover .action-buttons, /* when link is hovered select i */
+.list-group-item .action-buttons:hover /* when space after link is hovered select i */
+{ /* when icon is hovered select i */
+  visibility: visible;
+}
+
+.list-group-item .action-buttons{ /* in all other case hide it */
+  visibility: hidden;
+}
+.action-buttons{
+  position: absolute; top:10px; right:20px; z-index:20;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 3px;
+  background-color: #fff;
+  padding: 3px 10px;
+}
 /*# sourceMappingURL=style.css.map */
 /* .code-display{background:rgba(247, 244, 244, 0.4); padding:10px;} */

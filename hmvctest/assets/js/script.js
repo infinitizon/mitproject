@@ -4,7 +4,10 @@ $(function(){
         $lang = $(this).attr("data-lang");
         $node = $(this).attr("data-node");
         $content = $(this).attr("data-content");
-// console.log(config); return;
         $("#frame").attr("src", config[$lang][$node]+$content);
     });
+    
+    $('a[data-quiz]').on('click', function() {
+        $("#frame").attr("src",config['webroot']['endpoint']+"hmvctest/cbt/quiz/"+$(this).data('quiz'));
+    })
 });

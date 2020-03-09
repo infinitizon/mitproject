@@ -14,6 +14,17 @@ class Common extends CI_Model {
 	public function setTable($table){
 		$this->table = $table;
 	}
+    public function check_login() {
+        if (!$this->session->has_userdata('logged_in')) {
+            if (!empty($_SERVER['QUERY_STRING'])) {
+                $uri = uri_string() . '?' . $_SERVER['QUERY_STRING'];
+            } else {
+                $uri = uri_string();
+            }
+            $this->session->set_userdata('redirect', $uri);
+            redirect('admin/login');
+        }
+    }
 	function get($order_by) {
 		$this->db->order_by($order_by);
 		$query=$this->db->get($this->getTable());
@@ -31,6 +42,11 @@ class Common extends CI_Model {
 		foreach($clauses as $col=>$value){
 			$this->db->where($col, $value);
 		}
+		$query=$this->db->get($this->getTable());
+		return $query;
+	}
+	function get_where_in($col,$clauses=[]) {
+		$this->db->where_in($col, $clauses);
 		$query=$this->db->get($this->getTable());
 		return $query;
 	}

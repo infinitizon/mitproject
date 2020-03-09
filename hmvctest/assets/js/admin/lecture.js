@@ -1,14 +1,36 @@
 $(function () {
-    $('form#lecture').on('submit', function (e) {
+    // 20200140==Lecture, 20200141=Quiz
+    $('#record_type').html() == 20200141 ? 
+    $('input[name="record_type"]').prop("checked", true) :
+        $('input[name="record_type"]').prop("checked", false) ;
+
+    var $quiz = $("#quiz").children().clone();
+    var $lecture = $("#lecture").children().clone();
+    $('#lectureType').change(function (e) {
+        $("#quiz").html("");
+        $("#lecture").html("");
+        if($(this).is(":checked")){
+            $("#quiz").append($quiz)
+        } else {
+            $("#lecture").append($lecture)
+        }
+    }).trigger('change');
+    // $("a").click(function(e){
+    //     e.stopPropagation();
+    //     e.stopImmediatePropagation();
+    //     e.preventDefault();
+    //     console.log(e.target);
+    // });
+    $('form[name="lecture"]').on('submit', function (e) {
         e.preventDefault();
         content=$('.summernote').summernote('code');
-        // data=$(this).serialize()+'&course_name='+$('#course option:selected').attr('data-link')+'&'+{'content':content};
         unindexed_array=$(this).serializeArray();
         var data = {};
         $.map(unindexed_array, function(n, i){
             data[n['name']] = n['value'];
         });
         data['course_name'] = $('#course option:selected').attr('data-link');
+        data['record_type'] =$('input[name="record_type"]').is(':checked')?20200141:20200140;
         data['content'] = content;
         // console.log(data);return;
         $.ajax({

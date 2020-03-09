@@ -19,6 +19,9 @@
                                         <h5 class="mb-1"><?php echo $lecture->menu_name; ?></h5><small>created <?php echo $lecture->create_date; ?></small>
                                     </div>
                                     <small>Click to edit.</small>
+                                    <span class="action-buttons">
+                                        <i class="fas fa-minus-circle"></i>
+                                    </span>
                                 </a>
                             <?php
                             }

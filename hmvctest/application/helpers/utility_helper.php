@@ -40,7 +40,7 @@ function buildMenu($parent, $menu, $options) {
 				if($menu['items'][$itemId]['link'] == 'link-label') 
 					$html .= '<li class="nav-label">'.$menu['items'][$itemId]['menu_name']."</li>\n\r";
 				else
-					$html .= '<li> <a href="'.base_url().$menu['items'][$itemId]['link'].'">'.
+					$html .= '<li> <a href="'.($menu['items'][$itemId]['record_type']==20200141?'javascript:;':base_url().$menu['items'][$itemId]['link']).'" '.($menu['items'][$itemId]['record_type']==20200141?'data-quiz="'.$menu['items'][$itemId]['quiz'].'" data-toggle="modal" data-target="#exampleModalCenter" data-backdrop="static" data-keyboard="false"':'').'>'.
 							($menu['items'][$itemId]['par_id']==0 && $menu['items'][$itemId]['icon'] ? 
 								'<i class="'.$menu['items'][$itemId]['icon'].'"></i>'.'<span class="nav-text">'.$menu['items'][$itemId]['menu_name'].'</span>' :
 								$menu['items'][$itemId]['menu_name']).
