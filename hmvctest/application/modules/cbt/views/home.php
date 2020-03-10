@@ -29,9 +29,10 @@
                             </tr>
                         </tbody>
                     </table>
+                    <input type="hidden" name="question_count" value="<?php echo $quiz->question_count ?>">
                     <input type="hidden" name="question_order" value="1">
                     <input type="hidden" name="quiz_attempt" value="<?php echo $quiz->quiz_attempt ?>">
-                    <button class="btn btn-success" type="submit">Start Quiz</button>
+                    <button class="btn btn-primary" type="submit">Start Quiz</button>
                 </form>
             </div>
         </div>

@@ -57,10 +57,11 @@
                 <?php
                     }
                 }
+                echo '<input type="hidden" name="question_count" value="'.$question_count.'">';
                 echo '<input type="hidden" name="question_order" value="'.($question->question_order+1).'">';
                 echo '<input type="hidden" name="answers">';
             ?>
-            <input class="btn btn-success" type="submit" value="Save and Continue ">
+            <input class="btn btn-<?php echo $question->question_order==$question_count?'info':'primary' ?>" type="submit" value="<?php echo $question->question_order==$question_count?'Submit':'Save and Continue'?>">
             </form>
         </div>
     </div>

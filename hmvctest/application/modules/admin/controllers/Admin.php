@@ -5,6 +5,8 @@ class Admin extends MX_Controller {
 
 	public function index() {
 		if (!$this->session->userdata('logged_in')) redirect('admin/login');
+		$data['styles'] = [];
+		$data['scripts'] = [];
 
 		$this->load->model('test/tests');
 		$data['sidebar'] = $this->tests->multi_menu();
@@ -16,6 +18,8 @@ class Admin extends MX_Controller {
 	public function login($result=array()) {
 		if (!empty($result))
 			$data['result'] = $result;
+		$data['styles'] = [];
+		$data['scripts'] = [];
 		$data['module'] = "admin";
 		$data['view_file'] = "login"; 
 		$data['pageTitle'] = "Login"; 
@@ -26,6 +30,8 @@ class Admin extends MX_Controller {
 		redirect(site_url('admin'), 'refresh');
 	}
 	public function p_login() {
+		$data['styles'] = [];
+		$data['scripts'] = [];
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('username', 'Username', 'trim|required|max_length[50]');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|max_length[50]');
@@ -55,6 +61,8 @@ class Admin extends MX_Controller {
 		}
 	}
 	public function register($result=array()) {
+		$data['styles'] = [];
+		$data['scripts'] = [];
 		if (!empty($result))
 			$data['result'] = $result;
 		$data['module'] = "admin";
@@ -90,6 +98,8 @@ class Admin extends MX_Controller {
 		}
 	}
 	public function profile($result=array()) {
+		$data['styles'] = [];
+		$data['scripts'] = [];
 		if($this->uri->segment(3)=='logout') $this->logout();
 		if (is_array($result) && !empty($result))
 			$data['result'] = $result;
@@ -163,6 +173,8 @@ class Admin extends MX_Controller {
 			$data['users'] = $this->User->findUsers();
 		}
 		$this->load->model('profile');
+		$data['styles'] = [];
+		$data['scripts'] = [];
 		$data['roles'] = $this->profile->_findAllRoles();
 		$data['pageTitle'] = "Users";
 		$data['module'] = "user";

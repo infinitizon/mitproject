@@ -8,10 +8,12 @@ class Cbt extends MX_Controller {
 		$data['styles'] = [];
 		$data['scripts'] = [];
 		
-		$this->db->select('q.*,qa.r_k quiz_attempt')
+		$this->db->select('q.*,qa.r_k quiz_attempt, COUNT(qq.r_k) question_count')
 				->from('quiz q')
 				->join('quiz_attempt qa', 'q.r_k=qa.quiz_r_k AND qa.user_r_k='.$this->session->userdata('logged_in')->r_k, 'left')
-				->where("q.r_k",$r_k);
+				->join('quiz_questions qq', 'q.r_k=qq.quiz_r_k', 'left')
+				->where("q.r_k",$r_k)
+				->group_by("q.r_k");
 		$data['quiz_r_k'] = $r_k;
 		$data['quiz'] = $this->db->get()->result()[0];
 
@@ -46,21 +48,26 @@ class Cbt extends MX_Controller {
 					, 'quiz_r_k'=>$quiz_r_k, 'user_r_k'=>$this->session->userdata('logged_in')->r_k];
 				$this->Common->setTable('quiz_attempt');
 				$this->Common->_insert_on_duplicate_update($fields) ;
-				$data['quiz_attempt'] = $this->db->insert_id();
+				$data['quiz_attempt'] = $this->input->post('quiz_attempt')?$this->input->post('quiz_attempt'):$this->db->insert_id();
 			} else {
 				$data['quiz_attempt'] = $this->input->post('quiz_attempt');
 				$fields = ['r_k'=>null, 'quiz_attempt'=>$data['quiz_attempt']
 					, 'questions_r_k'=>$this->input->post('questions_r_k')
-					, 'answer_given'=>json_encode($this->input->post('answers'))];
+					, 'answer_given'=>$this->input->post('answers')];
 				$this->Common->setTable('attempt_answer');
 				$this->Common->_insert_on_duplicate_update($fields) ;
 			}	
 		}
 
-		$question = $this->getNext($quiz_r_k, $this->input->post('question_order'));
-		$result = $question->result()[0];
-		$result->answers = json_decode($result->answers);
-		$data['question'] = $result;
+		$data['question_count'] = $this->input->post('question_count');
+		if($this->input->post('question_order') > $this->input->post('question_count') ) {
+			echo "Stop there";
+		} else {
+			$question = $this->getNext($quiz_r_k, $this->input->post('question_order'));
+			$result = $question->result()[0];
+			$result->answers = json_decode($result->answers);
+			$data['question'] = $result;
+		}
 		
 		echo Modules::run("templates/auth", $data);
 	}
