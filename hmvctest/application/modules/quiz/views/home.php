@@ -18,7 +18,7 @@
                                     <div class="d-flex w-100 justify-content-between">
                                         <h5 class="mb-1"><?php echo $quiz->quiz_name; ?></h5><small>created <?php echo $quiz->create_date; ?></small>
                                     </div>
-                                    <small><?php echo $quiz->total_questions ?> questions</small>
+                                    <small><?php echo $quiz->total_questions ?> question(s) added</small>
                                 </a>
                             <?php
                             }
