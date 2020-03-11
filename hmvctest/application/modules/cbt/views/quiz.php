@@ -39,7 +39,9 @@
                                     <input type="checkbox" name="atmt_ans_gvn"
                                         <?php echo isset($question->answers[$i-1]->atmt_ans_gvn) ? 
                                             ($question->answers[$i-1]->atmt_ans_gvn=='true'?'checked="checked"':'') :
-                                                ''; ?> />
+                                                ''; 
+                                            echo ((isset($quiz_completed) && $quiz_completed == 'true')? 'disabled="disabled"' :'') 
+                                        ?> />
                                     <span><span>Wrong</span><span>Correct</span><a></a></span>
                                 </label>
                             <?php } else { ?>
@@ -47,7 +49,9 @@
                                     <input type="radio" name="atmt_ans_gvn" 
                                         <?php echo isset($question->answers[$i-1]->atmt_ans_gvn) ? 
                                                 ($question->answers[$i-1]->atmt_ans_gvn=='true'?'checked':'') :
-                                                    ''; ?> />
+                                                    ''; 
+                                            echo ((isset($quiz_completed) && $quiz_completed == 'true')? 'disabled="disabled"' :'') 
+                                        ?> />
                                     <span><i class="handle"></i></span>
                                 </label>
                             <?php } ?>
@@ -60,8 +64,16 @@
                 echo '<input type="hidden" name="question_count" value="'.$question_count.'">';
                 echo '<input type="hidden" name="question_order" value="'.($question->question_order+1).'">';
                 echo '<input type="hidden" name="answers">';
+                if((isset($quiz_completed) && $quiz_completed == 'true') || $question->question_order==$question_count) {
+                    echo '<input type="hidden" name="quiz_completed" value="true">';
+                }
+                if($question->question_order>2) {
+                    echo '<a href="javascript:;" class="btn btn-primary text-white" id="previous">Previous</a>';
+                }
             ?>
-            <input class="btn btn-<?php echo $question->question_order==$question_count?'info':'primary' ?>" type="submit" value="<?php echo $question->question_order==$question_count?'Submit':'Save and Continue'?>">
+                <a href="javascript:;" class="btn btn-<?php echo $question->question_order==$question_count?'info submit':'primary' ?>" id="next">
+                    <?php echo $question->question_order==$question_count?'Submit':'Save and Continue'?>
+                </a>
             </form>
         </div>
     </div>

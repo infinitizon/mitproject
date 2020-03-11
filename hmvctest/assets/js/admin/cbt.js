@@ -1,4 +1,26 @@
 $(function () {
+    $('a#previous').on('click', function (e) {
+        e.preventDefault();
+        $('input[name="question_order"]').val( parseInt($('input[name="question_order"]').val()) - 2);
+        $('form#saveAndContinue').submit();
+    });
+    $('a#next').on('click', function (e) {
+        e.preventDefault();
+        if($(this).hasClass('submit')) {
+            swal({
+                title: "Confirm!",
+                text: "Do you really want to submit?",
+                showCancelButton:!0,closeOnConfirm:!1,
+                animation: "slide-from-top",
+            },
+            function(inputValue){
+                $('input[name="question_order"]').val(1);
+                $('form#saveAndContinue').submit();
+            });
+        } else {
+            $('form#saveAndContinue').submit();
+        }
+    });
     $('form#saveAndContinue').on('submit', function (e) {
         e.preventDefault();
         unindexed_array=$(this).serializeArray();
@@ -19,7 +41,6 @@ $(function () {
         });
         $('input[name="answers"]').val(JSON.stringify(answer));
         
-        // console.log($('input[name="optionType"]').val());
         this.submit(); 
         return;
     });

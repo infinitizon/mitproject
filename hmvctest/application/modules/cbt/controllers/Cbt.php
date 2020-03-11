@@ -29,11 +29,13 @@ class Cbt extends MX_Controller {
 		$data['styles'] = [
 			assets_url()."/plugins/summernote/dist/summernote.css",
 			webroot_url()."/assets/vendor/fontawesome-iconpicker/3.0.0/dist/css/fontawesome-iconpicker.min.css",
+			assets_url()."/plugins/sweetalert/css/sweetalert.css",
 			webroot_url()."/assets/css/toggle-switch.css",
 		];
 		$data['scripts'] = [
 			assets_url()."/plugins/summernote/dist/summernote.min.js",
 			assets_url()."/plugins/summernote/dist/summernote-init.js",
+			assets_url()."/plugins/sweetalert/js/sweetalert.min.js",
 			webroot_url()."/assets/vendor/fontawesome-iconpicker/3.0.0/dist/js/fontawesome-iconpicker.min.js",
 			assets_url()."/js/admin/cbt.js",
 		];
@@ -41,7 +43,7 @@ class Cbt extends MX_Controller {
 
 		$data['module'] = "cbt";
 		$data['view_file'] = "quiz";
-
+// var_dump($this->input->post());
 		if($this->input->post()){
 			if($this->input->post('question_order') == 1) {
 				$fields = ['r_k'=>($this->input->post('quiz_attempt')?$this->input->post('quiz_attempt'):null)
@@ -60,8 +62,11 @@ class Cbt extends MX_Controller {
 		}
 
 		$data['question_count'] = $this->input->post('question_count');
+		if($this->input->post('quiz_completed') == 'true') {
+			$data['quiz_completed'] = true;
+		}
+		var_dump($this->input->post());
 		if($this->input->post('question_order') > $this->input->post('question_count') ) {
-			echo "Stop there";
 		} else {
 			$question = $this->getNext($quiz_r_k, $this->input->post('question_order'));
 			$result = $question->result()[0];
@@ -74,10 +79,12 @@ class Cbt extends MX_Controller {
 	
 	private function getNext($quiz_r_k, $question_order)
 	{
-		$this->db->select("q.r_k, q.question_type, q.question, qq.question_order, l.val_id, q.answers")
+		$this->db->select("q.r_k, q.question_type, q.question, qq.question_order, l.val_id, IFNULL(aa.answer_given,q.answers) answers")
             ->from('questions q')
 			->join('quiz_questions qq', 'q.r_k=qq.questions_r_k')
 			->join('t_wb_lov l', 'q.question_type=l.r_k', 'left')
+			->join('quiz_attempt qa', 'qq.quiz_r_k=qa.quiz_r_k', 'left')
+			->join('attempt_answer aa', 'qa.r_k=aa.quiz_attempt AND aa.questions_r_k=q.r_k', 'left')
 			->where('qq.quiz_r_k',$quiz_r_k)
 			->where('qq.question_order',$question_order);
 
