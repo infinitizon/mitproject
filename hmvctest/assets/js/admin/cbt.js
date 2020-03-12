@@ -14,8 +14,10 @@ $(function () {
                 animation: "slide-from-top",
             },
             function(inputValue){
-                $('input[name="question_order"]').val(1);
-                $('form#saveAndContinue').submit();
+                if(inputValue){
+                    $('input[name="question_order"]').val(0);
+                    $('form#saveAndContinue').submit();
+                }
             });
         } else {
             $('form#saveAndContinue').submit();

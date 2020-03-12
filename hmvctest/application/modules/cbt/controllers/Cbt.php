@@ -65,8 +65,9 @@ class Cbt extends MX_Controller {
 		if($this->input->post('quiz_completed') == 'true') {
 			$data['quiz_completed'] = true;
 		}
-		var_dump($this->input->post());
-		if($this->input->post('question_order') > $this->input->post('question_count') ) {
+		// var_dump($this->input->post());
+		if($this->input->post('question_order') > $this->input->post('question_count') || $this->input->post('question_order')==0) {
+			$data['question'] = (object) $this->input->post();
 		} else {
 			$question = $this->getNext($quiz_r_k, $this->input->post('question_order'));
 			$result = $question->result()[0];
@@ -79,7 +80,7 @@ class Cbt extends MX_Controller {
 	
 	private function getNext($quiz_r_k, $question_order)
 	{
-		$this->db->select("q.r_k, q.question_type, q.question, qq.question_order, l.val_id, IFNULL(aa.answer_given,q.answers) answers")
+		$this->db->select("q.r_k, q.question_type, q.question, qq.question_order, l.val_id optionType, IFNULL(aa.answer_given,q.answers) answers")
             ->from('questions q')
 			->join('quiz_questions qq', 'q.r_k=qq.questions_r_k')
 			->join('t_wb_lov l', 'q.question_type=l.r_k', 'left')
