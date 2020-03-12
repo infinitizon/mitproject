@@ -53,7 +53,8 @@ class Cbt extends MX_Controller {
 				$data['quiz_attempt'] = $this->input->post('quiz_attempt')?$this->input->post('quiz_attempt'):$this->db->insert_id();
 			} else {
 				$data['quiz_attempt'] = $this->input->post('quiz_attempt');
-				$fields = ['r_k'=>null, 'quiz_attempt'=>$data['quiz_attempt']
+				$fields = ['r_k'=>($this->input->post('attempt_answer')?$this->input->post('attempt_answer'):null)
+					, 'quiz_attempt'=>$data['quiz_attempt']
 					, 'questions_r_k'=>$this->input->post('questions_r_k')
 					, 'answer_given'=>$this->input->post('answers')];
 				$this->Common->setTable('attempt_answer');
@@ -68,6 +69,7 @@ class Cbt extends MX_Controller {
 		// var_dump($this->input->post());
 		if($this->input->post('question_order') > $this->input->post('question_count') || $this->input->post('question_order')==0) {
 			$data['question'] = (object) $this->input->post();
+			$data['quiz_summary'] = (object)$this->getQuizSummary($this->input->post('quiz_attempt'));
 		} else {
 			$question = $this->getNext($quiz_r_k, $this->input->post('question_order'));
 			$result = $question->result()[0];
@@ -80,7 +82,7 @@ class Cbt extends MX_Controller {
 	
 	private function getNext($quiz_r_k, $question_order)
 	{
-		$this->db->select("q.r_k, q.question_type, q.question, qq.question_order, l.val_id optionType, IFNULL(aa.answer_given,q.answers) answers")
+		$this->db->select("q.r_k, aa.r_k attempt_answer, q.question_type, q.question, qq.question_order, l.val_id optionType, IFNULL(aa.answer_given,q.answers) answers")
             ->from('questions q')
 			->join('quiz_questions qq', 'q.r_k=qq.questions_r_k')
 			->join('t_wb_lov l', 'q.question_type=l.r_k', 'left')
@@ -90,6 +92,53 @@ class Cbt extends MX_Controller {
 			->where('qq.question_order',$question_order);
 
 		return $this->db->get();
+	}
+	private function getQuizSummary($quiz_attempt)
+	{
+		$this->db->select("aa.r_k, aa.answer_given, l.val_id ")
+            ->from('attempt_answer aa')
+			->join('questions q', 'aa.questions_r_k=q.r_k', 'left')
+			->join('t_wb_lov l', 'q.question_type=l.r_k', 'left')
+			->where('aa.quiz_attempt',$quiz_attempt);
+		$attempts = $this->db->get();
+		$data['pass'] = 0; $data['totalPassScore'] = 0; $data['totalScore'] = 0;
+		if($attempts->num_rows() > 0){
+			foreach($attempts->result() as $attempt){
+				$attempt->answer_given = json_decode($attempt->answer_given);
+				$multi = false; $valid=0; $totalCorrectOption=0;
+				$multiPass = false;
+				$multiFail = false;
+				foreach ($attempt->answer_given as $answer) {
+					if ($attempt->val_id == 'MCSA') {
+						if ($answer->exm_qst_vld=='true' && $answer->atmt_ans_gvn) {
+							$pass++;$valid++;$totalCorrectOption++;
+						}
+					}
+					if ($attempt->val_id == 'MCMA') {
+						$multi = true;
+						if ($answer->exm_qst_vld=='true')$totalCorrectOption++;
+						if ($answer->exm_qst_vld=='true' && $answer->atmt_ans_gvn) {
+							$multiPass = true;
+							// (!$row['scr_vld_ans'] && $valid===0)?$valid++:$valid++;
+							$valid++;
+						}
+						elseif (!$answer->exm_qst_vld=='true' && $answer->atmt_ans_gvn) $multiFail = true;
+					}
+				}
+				$score = 0;
+                if ($multi && $multiPass && !$multiFail) {
+                    $data['pass']++; $score=1;
+                }
+				$longAnswerPresent = false;
+				if ($attempt->val_id === 'LA') {
+					$longAnswerPresent = true;
+				}else{
+					$data['totalPassScore'] += 1;
+					$data['totalScore'] += $score;
+				}
+			}
+		}
+		return $data;
 	}
 	
 }
