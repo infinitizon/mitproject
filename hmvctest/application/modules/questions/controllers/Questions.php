@@ -6,6 +6,8 @@ class Questions extends MX_Controller {
 	public function index() 
 	{
 		if (!$this->session->userdata('logged_in')) redirect('admin/login');
+		if($this->session->userdata('logged_in')->val_dsc == 'STUDENT')
+			redirect('profile');
 
 		$data['module'] = "questions";
 		$data['view_file'] = "home"; 

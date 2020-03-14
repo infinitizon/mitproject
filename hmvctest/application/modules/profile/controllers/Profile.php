@@ -40,8 +40,6 @@ class Profile extends MX_Controller {
 			} 
 			
 			if($this->form_validation->run()) {
-				// var_dump($this->input->post());
-				
 				$fields = array(
 					'r_k' => $this->session->userdata('logged_in')->r_k,
 					'email' => $this->input->post('email'),

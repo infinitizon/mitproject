@@ -5,6 +5,9 @@ class Courses extends MX_Controller {
 
 	public function index() {
 		if (!$this->session->userdata('logged_in')) redirect('admin/login');
+		if($this->session->userdata('logged_in')->val_dsc != 'SUPER_ADMIN')
+			redirect('profile');
+
 
 		$data['module'] = "courses";
 		$data['view_file'] = "home"; 

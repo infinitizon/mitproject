@@ -6,6 +6,8 @@ class Lectures extends MX_Controller {
 	public function index() 
 	{
 		$this->load->model('Common'); $this->Common->check_login();
+		if($this->session->userdata('logged_in')->val_dsc == 'STUDENT')
+			redirect('profile');
 
 		$data['module'] = "lectures";
 		$data['view_file'] = "home"; 

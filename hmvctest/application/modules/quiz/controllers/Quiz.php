@@ -6,6 +6,8 @@ class Quiz extends MX_Controller {
 	public function index() 
 	{
 		if (!$this->session->userdata('logged_in')) redirect('admin/login');
+		if($this->session->userdata('logged_in')->val_dsc == 'STUDENT')
+			redirect('profile');
 
 		$data['module'] = "quiz";
 		$data['view_file'] = "home"; 

@@ -10,6 +10,7 @@ class Login extends CI_Model{
         $this->db->join('t_wb_lov l', 'ut.user_type = l.r_k');
         $this->db->where('u.email', $usr_nm);
         $this->db->where('u.password', $pwd);
+        $this->db->where('u.active', 1);
         $query = $this->db->get();
         if ($query->num_rows() == 1) {
             $row = $query->result()[0];
